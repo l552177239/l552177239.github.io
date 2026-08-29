@@ -1,21 +1,28 @@
 {
   "name": "my-note",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "start": "gitbook serve ./content ./gh-pages",
-    "build": "gitbook build ./content ./gh-pages",
-    "deploy": "node ./scripts/deploy-gh-pages.js",
-    "publish": "npm run build && npm run deploy",
-    "port": "lsof -i :35729"
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "hexo": {
+    "version": "7.3.0"
+  },
   "dependencies": {
-    "axios": "^0.16.2",
-    "gh-pages": "^1.0.0",
-    "react-router-dom": "^4.1.2"
+    "hexo": "^7.0.0",
+    "hexo-deployer-git": "^4.0.0",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-category": "^2.0.0",
+    "hexo-generator-index": "^3.0.0",
+    "hexo-generator-search": "^2.4.3",
+    "hexo-generator-tag": "^2.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^6.0.0",
+    "hexo-renderer-stylus": "^3.0.0",
+    "hexo-server": "^3.0.0",
+    "hexo-theme-landscape": "^1.0.0"
   }
 }

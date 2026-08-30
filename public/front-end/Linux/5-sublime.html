@@ -1,0 +1,842 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/my-note/img/fluid.png">
+  <link rel="icon" href="/my-note/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Lious">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="简介Sublime Text 是一个代码编辑器（Sublime Text 3是收费软件，但可以无限期试用） Sublime 支持多种编程语言的语法高亮、拥有优秀的代码自动完成功能，还拥有代码片段（Snippet）的功能，可以将常用的代码片段保存起来，在需要时随时调用 安装window下百度搜索 sublime 进行下载安装 插件安装 Package Control按 Ctrl+&#96; 调出co">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sublime 编辑器">
+<meta property="og:url" content="https://l552177239.github.io/my-note/front-end/Linux/5-sublime.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="简介Sublime Text 是一个代码编辑器（Sublime Text 3是收费软件，但可以无限期试用） Sublime 支持多种编程语言的语法高亮、拥有优秀的代码自动完成功能，还拥有代码片段（Snippet）的功能，可以将常用的代码片段保存起来，在需要时随时调用 安装window下百度搜索 sublime 进行下载安装 插件安装 Package Control按 Ctrl+&#96; 调出co">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-29T11:08:36.279Z">
+<meta property="article:modified_time" content="2026-08-29T11:08:36.279Z">
+<meta property="article:author" content="Lious">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Sublime 编辑器 - 我的笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/my-note/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/my-note/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/my-note/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"l552177239.github.io","root":"/my-note/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/my-note/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/my-note/js/utils.js" ></script>
+  <script  src="/my-note/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/my-note/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/front-end/" target="_self">
+                <i class="iconfont icon-code"></i>
+                <span>前端</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>联系我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/front-end/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-code"></i>
+                  <span>前端</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>联系我</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/my-note/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Sublime 编辑器"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Sublime Text 是一个代码编辑器（Sublime Text 3是收费软件，但可以无限期试用）</p>
+<p>Sublime 支持多种编程语言的语法高亮、拥有优秀的代码自动完成功能，还拥有代码片段（Snippet<br>）的功能，可以将常用的代码片段保存起来，在需要时随时调用</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>window下百度搜索 <code>sublime</code> 进行下载安装</p>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><h4 id="安装-Package-Control"><a href="#安装-Package-Control" class="headerlink" title="安装 Package Control"></a>安装 <code>Package Control</code></h4><p>按 <strong>Ctrl+&#96;</strong> 调出console</p>
+<p>粘贴下面安装代码到底部命令行并回车：</p>
+<blockquote>
+<p>import urllib.request,os,hashlib; h &#x3D; ‘df21e130d211cfc94d9b0905775a7c0f’ + ‘1e3d39e33b79698005270310898eea76’; pf &#x3D; ‘Package Control.sublime-package’; ipp &#x3D; sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by &#x3D; urllib.request.urlopen( ‘<a target="_blank" rel="noopener" href="http://packagecontrol.io/">http://packagecontrol.io/</a>‘ + pf.replace(‘ ‘, ‘%20’)).read(); dh &#x3D; hashlib.sha256(by).hexdigest(); print(‘Error validating download (got %s instead of %s), please try manual install’ % (dh, h)) if dh !&#x3D; h else open(os.path.join( ipp, pf), ‘wb’ ).write(by)</p>
+</blockquote>
+<p>重启Sublime Text 3。</p>
+<p>如果在Perferences-&gt;package settings中看到package control这一项，则安装成功。</p>
+<p>可以到 <a target="_blank" rel="noopener" href="https://packagecontrol.io/">官网链接</a> 复制代码或下载<br><code>Package Control.sublime-package</code><br>放到 <code>sublime</code> 安装目录里的 <code>data</code> 里 <code>installed package</code> 文件夹（这个文件夹位置可能会不一样）</p>
+<h4 id="用Package-Control安装其他插件"><a href="#用Package-Control安装其他插件" class="headerlink" title="用Package Control安装其他插件"></a>用Package Control安装其他插件</h4><p><strong>第一种方法</strong>：按下Ctrl+Shift+P调出命令面板，输入install 点击 Install Package 选项，然后在列表中搜索并选中要安装的插件</p>
+<p><strong>第二种方法</strong>：点击工具栏<code>Preferences</code>下的<code>Package Control</code>然后搜索并选中要安装的插件</p>
+<h4 id="常用插件"><a href="#常用插件" class="headerlink" title="常用插件"></a>常用插件</h4><p><strong>Package Control</strong>（插件包控制插件）</p>
+<p>安装SublimeText后必须安装的东西，插件包控制插件。<br>可以控制插件的查看已安装差价、安装、升级、删除等操作</p>
+<p><strong>ChineseLocalization</strong> （汉化插件）</p>
+<p>工具栏 Help 下的 Language 选项选择语言</p>
+<p><strong>Emmet</strong> （自动补齐插件）</p>
+<p>输入简写，按Tab键可触发效果</p>
+<p><strong>Babel</strong>（React JSX）</p>
+<p>具有React JSX扩展名的ES6 JavaScript的语法定义（语法高亮）</p>
+<p><strong>Agila</strong>（主题）</p>
+<p>一款受欢迎的sublime Theme</p>
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><h4 id="配置代码片段"><a href="#配置代码片段" class="headerlink" title="配置代码片段"></a>配置代码片段</h4><p>首先点击<code>Tools</code> -&gt; <code>New Snippet</code></p>
+<p>显示代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">snippet</span>&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">content</span>&gt;</span>&lt;![CDATA[<br>Hello, $&#123;1:this&#125; is a $&#123;2:snippet&#125;.<br>]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">content</span>&gt;</span><br>     <span class="hljs-comment">&lt;!-- Optional: Set a tabTrigger to define how to trigger the snippet --&gt;</span><br>     <span class="hljs-comment">&lt;!-- &lt;tabTrigger&gt;hello&lt;/tabTrigger&gt; --&gt;</span><br>     <span class="hljs-comment">&lt;!-- Optional: Set a scope to limit where the snippet will trigger --&gt;</span><br>     <span class="hljs-comment">&lt;!-- &lt;scope&gt;source.python&lt;/scope&gt; --&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">snippet</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="模板说明"><a href="#模板说明" class="headerlink" title="模板说明"></a>模板说明</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">snippet</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">content</span>&gt;</span>&lt;![CDATA[<br>    你需要插入的代码片段$&#123;1:name&#125;<br>    ]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">content</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 可选：快捷键，利用Tab自动补全代码的功能 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">tabTrigger</span>&gt;</span>xyzzy<span class="hljs-tag">&lt;/<span class="hljs-name">tabTrigger</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 可选：使用范围，不填写代表对所有文件有效。附：source.css和test.html分别对应不同文件。 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>source.python<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 可选：在snippet菜单中的显示说明（支持中文）。如果不定义，菜单则显示当前文件的文件名。 --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>My Fancy Snippet<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">snippet</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>小贴士</strong>：</p>
+<ol>
+<li>用TAB键调用代码片段</li>
+<li>你发的这个代码片段要打上<code>xyzzy</code>按下TAB键就可以了</li>
+<li>一些文件中（如HTML格式文件）是不显示“代码片段的说明”的。直接按TAB键就可以</li>
+<li><code>$&#123;1:name&#125;</code>表示代码插入后，光标所停留的位置，可同时插入多个。其中:name为自定义参数（可选）</li>
+<li><code>$&#123;2&#125;</code>表示代码插入后，按Tab键，光标会根据顺序跳转到相应位置（以此类推）</li>
+</ol>
+<h5 id="举个例子："><a href="#举个例子：" class="headerlink" title="举个例子："></a>举个例子：</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">snippet</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">content</span>&gt;</span><br>  &lt;![CDATA[<br>  import React from &#x27;react&#x27;<br><br>  class $&#123;1&#125; extends React.Component&#123;<br>  render()&#123;<br>    return (<br>      &lt;div className=&#x27;$&#123;2&#125;&#x27;&gt;<br>        $&#123;1&#125;<br>      &lt;/div&gt;    <br>    )<br>  &#125;<br>  &#125;<br>  export default $&#123;1&#125;<br>  ]]&gt;<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">content</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">tabTrigger</span>&gt;</span>recl<span class="hljs-tag">&lt;/<span class="hljs-name">tabTrigger</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>React<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>source.js<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">snippet</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>创建完毕以后，保存在<code>\Packages\User</code>目录下，文件命名为<code>react-code</code>，后缀名<code>.sublime-snippet</code></p>
+<h4 id="内置快捷键"><a href="#内置快捷键" class="headerlink" title="内置快捷键"></a>内置快捷键</h4><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ctrl+L</td>
+<td>选择整行（按住-继续选择下行）</td>
+</tr>
+<tr>
+<td>Ctrl+KK</td>
+<td>从光标处删除至行尾</td>
+</tr>
+<tr>
+<td>Ctrl+K</td>
+<td>Backspace 从光标处删除至行首</td>
+</tr>
+<tr>
+<td>Ctrl+J</td>
+<td>合并行（已选择需要合并的多行时）</td>
+</tr>
+<tr>
+<td>Ctrl+KU</td>
+<td>改为大写</td>
+</tr>
+<tr>
+<td>Ctrl+KL</td>
+<td>改为小写</td>
+</tr>
+<tr>
+<td>Ctrl+D</td>
+<td>选择字符串 （按住-继续选择下个相同的字符串）</td>
+</tr>
+<tr>
+<td>Ctrl+M</td>
+<td>光标移动至括号内开始或结束的位置</td>
+</tr>
+<tr>
+<td>Ctrl+&#x2F;</td>
+<td>注释整行（如已选择内容，同“Ctrl+Shift+&#x2F;”效果）</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+c</td>
+<td>转换为utf8</td>
+</tr>
+<tr>
+<td>Ctrl+R</td>
+<td>搜索指定文件的函数标签</td>
+</tr>
+<tr>
+<td>Ctrl+G</td>
+<td>跳转到指定行</td>
+</tr>
+<tr>
+<td>Ctrl+KT</td>
+<td>折叠属性</td>
+</tr>
+<tr>
+<td>Ctrl+K0</td>
+<td>展开所有</td>
+</tr>
+<tr>
+<td>Ctrl+U</td>
+<td>软撤销</td>
+</tr>
+<tr>
+<td>Ctrl+T</td>
+<td>词互换</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>缩进 自动完成</td>
+</tr>
+<tr>
+<td>Shift+Tab</td>
+<td>去除缩进</td>
+</tr>
+<tr>
+<td>Ctrl+F2</td>
+<td>设置书签.</td>
+</tr>
+<tr>
+<td>F2</td>
+<td>下一个书签</td>
+</tr>
+<tr>
+<td>Shift+F2</td>
+<td>上一个书签</td>
+</tr>
+<tr>
+<td>Alt+F3</td>
+<td>选中文本按下快捷键，即可一次性选择全部的相同文本进行同时编辑</td>
+</tr>
+<tr>
+<td>Alt+.</td>
+<td>闭合当前标签</td>
+</tr>
+<tr>
+<td>F6</td>
+<td>检测语法错误</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>行排序(按a-z)</td>
+</tr>
+<tr>
+<td>F11</td>
+<td>全屏模式</td>
+</tr>
+<tr>
+<td>Ctrl+Enter</td>
+<td>光标后插入行</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+Enter</td>
+<td>光标前插入行</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+[</td>
+<td>折叠代码</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+]</td>
+<td>展开代码</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+↑</td>
+<td>与上行互换</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+↓</td>
+<td>与下行互换</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+A</td>
+<td>选择光标位置父标签对儿</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+D</td>
+<td>复制光标所在整行，插入在该行之前</td>
+</tr>
+<tr>
+<td>ctrl+shift+F</td>
+<td>在文件夹内查找，与普通编辑器不同的地方是sublime允许添加多个文件夹进行查找</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+K</td>
+<td>删除整行</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+L</td>
+<td>鼠标选中多行（按下快捷键），即可同时编辑这些行</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+M</td>
+<td>选择括号内的内容（按住-继续选择父括号）</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+P</td>
+<td>打开命令面板</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+&#x2F;</td>
+<td>注释已选择内容</td>
+</tr>
+<tr>
+<td>Ctrl+PageDown(PageUp)</td>
+<td>文件按开启的前后顺序切换</td>
+</tr>
+<tr>
+<td>Shift+Tab</td>
+<td>去除缩进</td>
+</tr>
+<tr>
+<td>Alt+Shift+1~9（非小键盘）</td>
+<td>屏幕显示相等数字的小窗口</td>
+</tr>
+<tr>
+<td>Ctrl+鼠标左键</td>
+<td>可以同时选择要编辑的多处文本</td>
+</tr>
+<tr>
+<td>shift+鼠标右键</td>
+<td>列选择</td>
+</tr>
+<tr>
+<td>Shift+鼠标右键（鼠标中键）</td>
+<td>可以用鼠标进行竖向多行选择</td>
+</tr>
+</tbody></table>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><p>官网：<a target="_blank" rel="noopener" href="http://www.sublimetext.com/">点击进入</a></p>
+</li>
+<li><p>Package Control：<a target="_blank" rel="noopener" href="https://packagecontrol.io/installation">点击进入</a></p>
+</li>
+<li><p>CSDN：<a target="_blank" rel="noopener" href="http://blog.csdn.net/Oops_Qu/article/details/72811128?locationNum=4&fps=1">点击进入</a></p>
+</li>
+</ul>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/my-note/js/events.js" ></script>
+<script  src="/my-note/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/my-note/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/my-note/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/my-note/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

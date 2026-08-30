@@ -1,0 +1,710 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/my-note/img/fluid.png">
+  <link rel="icon" href="/my-note/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Lious">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="VuexVuex 是一个专为 Vue.js 应用程序开发的状态管理模式，类似 React 中的 Redux 装包1npm install vuex --save  注入 store导入 store 1import store from &#x27;.&#x2F;store&#x27;  将 store 注入到组件中 1234567new Vue(&#123;  el: &#x27;#app&#x27;,">
+<meta property="og:type" content="website">
+<meta property="og:title" content="page.title">
+<meta property="og:url" content="https://l552177239.github.io/my-note/front-end/Vue/10-vuex.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="VuexVuex 是一个专为 Vue.js 应用程序开发的状态管理模式，类似 React 中的 Redux 装包1npm install vuex --save  注入 store导入 store 1import store from &#x27;.&#x2F;store&#x27;  将 store 注入到组件中 1234567new Vue(&#123;  el: &#x27;#app&#x27;,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://l552177239.github.io/img/store.png">
+<meta property="article:published_time" content="2026-08-29T11:08:36.315Z">
+<meta property="article:modified_time" content="2026-08-29T11:08:36.315Z">
+<meta property="article:author" content="Lious">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://l552177239.github.io/img/store.png">
+  
+  
+  
+  <title>page.title - 我的笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/my-note/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/my-note/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/my-note/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"l552177239.github.io","root":"/my-note/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/my-note/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/my-note/js/utils.js" ></script>
+  <script  src="/my-note/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/my-note/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/front-end/" target="_self">
+                <i class="iconfont icon-code"></i>
+                <span>前端</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>联系我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/front-end/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-code"></i>
+                  <span>前端</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>联系我</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/my-note/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="page.title"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h1 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h1><p>Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式，类似 React 中的 Redux</p>
+<h3 id="装包"><a href="#装包" class="headerlink" title="装包"></a>装包</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install vuex <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="注入-store"><a href="#注入-store" class="headerlink" title="注入 store"></a>注入 store</h3><p>导入 store</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>将 store 注入到组件中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>  store,<br>  router,<br>  <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;&lt;App/&gt;&#x27;</span>,<br>  <span class="hljs-attr">components</span>: &#123; <span class="hljs-title class_">App</span> &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="创建-store"><a href="#创建-store" class="headerlink" title="创建 store"></a>创建 store</h3><p>我们这里根据官网给出的例子，创建 store</p>
+<p>数据结构为：</p>
+<p><img src="/my-note/../img/store.png" srcset="/my-note/img/loading.gif" lazyload alt="数据结构"></p>
+<p>其中<code>index.js</code> 在 store 中创建 store 并将数据组合的作用，类似 Redux 中的 combineReducers</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vuex</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span><br><span class="hljs-comment">//引用 vuex</span><br><span class="hljs-keyword">import</span> comment <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./modules/comment&#x27;</span><br><span class="hljs-comment">// 导入 comment 数据</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">Vuex</span>)<br><span class="hljs-comment">// 安装使用 vuex 插件</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vuex</span>.<span class="hljs-title class_">Store</span>(&#123;<br>  <span class="hljs-comment">// 创建 store 并导出</span><br>  <span class="hljs-attr">modules</span>: &#123;<br>    comment<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>Vuex 通过 Vue.use(Vuex) 提供了一种机制将状态从根组件『注入』到每一个子组件中 store 选项，在组件需要 store 时，用 （<code>this.$store.state</code>）调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> state = &#123;<br>  <span class="hljs-attr">all</span>: [<br>    &#123; <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;haha&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;gege&#x27;</span> &#125;<br>  ]<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  state<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在 modules 文件夹中写入数据并导出</p>
+<p><strong>参考</strong>：<a target="_blank" rel="noopener" href="https://vuex.vuejs.org/zh-cn/state.html">https://vuex.vuejs.org/zh-cn/state.html</a></p>
+<h3 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h3><p>Vuex 的状态存储是响应式的，从 store 实例中读取状态最简单的方法就是在 <strong>计算属性中返回某个状态</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script&gt;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;comment-box&#x27;</span>,<br>  <span class="hljs-comment">// 在计算属性 computed 中</span><br>  <span class="hljs-attr">computed</span>: &#123;<br>    <span class="hljs-comment">//comments 方法</span><br>    <span class="hljs-attr">comments</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-comment">//通过返回值拿到 store 中的数据</span><br>      <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">$store</span>.<span class="hljs-property">state</span>.<span class="hljs-property">comment</span>.<span class="hljs-property">all</span><br>    &#125;<br>  &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>通过 comments 方法 返回的<code>this.$store.state.comment.all</code>拿到 store 中的值</p>
+<p>将数据渲染到页面上</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;comment in reversedMessage&quot;</span>&gt;</span><br>    &#123;&#123; comment.text &#125;&#125;<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="对-store-中的数据进行修改"><a href="#对-store-中的数据进行修改" class="headerlink" title="对 store 中的数据进行修改"></a>对 store 中的数据进行修改</h3><blockquote>
+<p>更改 Vuex 的 store 中的状态的唯一方法是提交 mutation</p>
+</blockquote>
+<p>Vuex 中的 mutations 非常类似于事件：每个 mutation 都有一个字符串的 事件类型 (type) 和 一个 回调函数 (handler)。这个回调函数就是我们实际进行状态更改的地方，并且它会接受 state 作为第一个参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> mutations = &#123;<br>    [函数名] (state) &#123;<br>      <span class="hljs-comment">// 变更状态</span><br>      state.<span class="hljs-property">count</span>++<br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="提交载荷（Payload）"><a href="#提交载荷（Payload）" class="headerlink" title="提交载荷（Payload）"></a>提交载荷（Payload）</h3><blockquote>
+<p>Payload 就是接受的数据</p>
+</blockquote>
+<p>你可以向 store.commit 传入额外的参数(数据)，即 mutation 的 载荷（payload）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> mutations = &#123;<br>  [increment] (state, n) &#123;<br>  <span class="hljs-comment">//n 为组件传过来的数据</span><br>    state.<span class="hljs-property">count</span> += n<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="使用常量替代-Mutation-事件类型"><a href="#使用常量替代-Mutation-事件类型" class="headerlink" title="使用常量替代 Mutation 事件类型"></a>使用常量替代 Mutation 事件类型</h3><p>在 store 文件夹下创建 <code>mutation-types.js</code>文件，将 Mutation 事件类型写在里面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SOME_MUTATION</span> = <span class="hljs-string">&#x27;SOME_MUTATION&#x27;</span><br><span class="hljs-comment">//声明 一个常量作为函数名</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Mutaion-函数"><a href="#Mutaion-函数" class="headerlink" title="Mutaion 函数"></a>Mutaion 函数</h3><blockquote>
+<p>store 类似于 React 中的 action</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//导入 事件类型</span><br><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> types <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../mutation-types&#x27;</span><br><span class="hljs-comment">//数据 state</span><br><span class="hljs-keyword">const</span> state = &#123;<br>  <span class="hljs-attr">all</span>: [<br>    &#123; <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;fooo&#x27;</span> &#125;,<br>    &#123; <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;barr&#x27;</span> &#125;<br>  ]<br>&#125;<br><span class="hljs-comment">//创建一个 mutations 将接受的数据放入 state 中</span><br><span class="hljs-keyword">const</span> mutations = &#123;<br>  [types.<span class="hljs-property">ADD_COMMENT</span>] (state, &#123; text &#125;) &#123;<br>    state.<span class="hljs-property">all</span>.<span class="hljs-title function_">push</span>(&#123; text &#125;)<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  state,<br>  mutations<br>&#125;<br><span class="hljs-comment">//导出 state mutations</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="在组件中提交-Mutations"><a href="#在组件中提交-Mutations" class="headerlink" title="在组件中提交 Mutations"></a>在组件中提交 Mutations</h3><p>你可以在组件中使用 this.$store.commit(‘xxx’) 提交 mutation，<br>或者使用 mapMutations 辅助函数将组件中的 methods 映射为 store.commit 调用（需要在根节点注入 store）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script&gt;<br>  <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> types <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../store/mutation-types&#x27;</span><br>  <span class="hljs-comment">//导入 mutation 函数类型</span><br>  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;comment-box&#x27;</span>,<br>    <span class="hljs-attr">computed</span>: &#123;<br>      <span class="hljs-attr">reversedMessage</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">comments</span>.<span class="hljs-title function_">slice</span>().<span class="hljs-title function_">reverse</span>()<br>      &#125;,<br>      <span class="hljs-attr">comments</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">$store</span>.<span class="hljs-property">state</span>.<span class="hljs-property">comment</span>.<span class="hljs-property">all</span><br>      &#125;<br>    &#125;,<br>    <span class="hljs-attr">methods</span>: &#123;<br>      <span class="hljs-attr">addComment</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-keyword">const</span> input = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;commentForm&#x27;</span>)<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">$store</span>.<span class="hljs-title function_">commit</span>(types.<span class="hljs-property">ADD_COMMENT</span>, &#123; <span class="hljs-attr">text</span>: input.<span class="hljs-property">value</span> &#125;)<br>        input.<span class="hljs-property">value</span> = <span class="hljs-string">&#x27;&#x27;</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;comment-box&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form&quot;</span>&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;commentForm&quot;</span> /&gt;</span><br>     <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">v-on:click</span>=<span class="hljs-string">&quot;addComment&quot;</span>&gt;</span>发布<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;comment in reversedMessage&quot;</span>&gt;</span><br>      &#123;&#123; comment.text &#125;&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h3><blockquote>
+<p>action 类似于 React 中的 Thunk</p>
+</blockquote>
+<p>Action 类似于 mutation，不同在于：</p>
+<ul>
+<li><p>Action 提交的是 mutation，而不是直接变更状态</p>
+</li>
+<li><p>Action 可以包含任意异步操作</p>
+</li>
+</ul>
+<h3 id="小例子"><a href="#小例子" class="headerlink" title="小例子"></a>小例子</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vuex</span>.<span class="hljs-title class_">Store</span>(&#123;<br>  <span class="hljs-attr">state</span>: &#123;<br>    <span class="hljs-attr">count</span>: <span class="hljs-number">0</span><br>  &#125;,<br>  <span class="hljs-attr">mutations</span>: &#123;<br>    <span class="hljs-title function_">increment</span> (state) &#123;<br>      state.<span class="hljs-property">count</span>++<br>    &#125;<br>  &#125;,<br>  <span class="hljs-comment">//发出 actions</span><br>  <span class="hljs-attr">actions</span>: &#123;<br>    <span class="hljs-title function_">increment</span> (context) &#123;<br>      context.<span class="hljs-title function_">commit</span>(<span class="hljs-string">&#x27;increment&#x27;</span>)<br>      <span class="hljs-comment">//通过 commit 触发 mutations</span><br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象，因此你可以调用 <code>context.commit</code> 提交一个 mutation，<br>或者通过 <code>context.state</code> 和 <code>context.getters</code> 来获取 state 和 getters。当我们在之后介绍到 Modules 时，你就知道 context 对象为什么不是 store 实例本身了。</p>
+<p>实践中，我们会经常用到 ES2015 的 参数解构 来简化代码（特别是我们需要调用 commit 很多次的时候）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">actions</span>: &#123;<br>  <span class="hljs-title function_">increment</span> (&#123; commit &#125;) &#123;<br>    <span class="hljs-title function_">commit</span>(<span class="hljs-string">&#x27;increment&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>参考</strong>：<a target="_blank" rel="noopener" href="https://vuex.vuejs.org/zh-cn/mutations.html">https://vuex.vuejs.org/zh-cn/mutations.html</a></p>
+<h3 id="分发-Action"><a href="#分发-Action" class="headerlink" title="分发 Action"></a>分发 Action</h3><blockquote>
+<p>Action 通过 store.dispatch 方法触发：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-string">&#x27;increment&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>乍一眼看上去感觉多此一举，我们直接分发 mutation 岂不更方便？</p>
+<p>实际上并非如此，还记得 mutation 必须同步执行这个限制么？</p>
+<p>Action 就不受约束！我们可以在 action 内部执行异步操作：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">actions</span>: &#123;<br>  <span class="hljs-title function_">incrementAsync</span> (&#123; commit &#125;) &#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-title function_">commit</span>(<span class="hljs-string">&#x27;increment&#x27;</span>)<br>    &#125;, <span class="hljs-number">1000</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Actions 支持同样的 <strong>载荷方式</strong> 和对象方式进行分发：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 以载荷形式分发</span><br>store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-string">&#x27;incrementAsync&#x27;</span>, &#123;<br>  <span class="hljs-attr">amount</span>: <span class="hljs-number">10</span><br>&#125;)<br><br><span class="hljs-comment">// 以对象形式分发</span><br>store.<span class="hljs-title function_">dispatch</span>(&#123;<br>  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;incrementAsync&#x27;</span>,<br>  <span class="hljs-attr">amount</span>: <span class="hljs-number">10</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="购物车示例"><a href="#购物车示例" class="headerlink" title="购物车示例"></a>购物车示例</h3><p>涉及到调用异步 API 和 分发多重 mutations：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">actions</span>: &#123;<br>  <span class="hljs-title function_">checkout</span> (&#123; commit, state &#125;, products) &#123;<br>    <span class="hljs-comment">// 把当前购物车的物品备份起来</span><br>    <span class="hljs-keyword">const</span> savedCartItems = [...state.<span class="hljs-property">cart</span>.<span class="hljs-property">added</span>]<br>    <span class="hljs-comment">// 发出结账请求，然后乐观地清空购物车</span><br>    <span class="hljs-title function_">commit</span>(types.<span class="hljs-property">CHECKOUT_REQUEST</span>)<br>    <span class="hljs-comment">// 购物 API 接受一个成功回调和一个失败回调</span><br>    shop.<span class="hljs-title function_">buyProducts</span>(<br>      products,<br>      <span class="hljs-comment">// 成功操作</span><br>      <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">commit</span>(types.<span class="hljs-property">CHECKOUT_SUCCESS</span>),<br>      <span class="hljs-comment">// 失败操作</span><br>      <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">commit</span>(types.<span class="hljs-property">CHECKOUT_FAILURE</span>, savedCartItems)<br>    )<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意我们正在进行一系列的异步操作，并且通过提交 mutation 来记录 action 产生的副作用（即状态变更）</p>
+<h3 id="在组件中分发-Action"><a href="#在组件中分发-Action" class="headerlink" title="在组件中分发 Action"></a>在组件中分发 Action</h3><p>你在组件中使用 this.$store.dispatch(‘xxx’) 分发 action，或者使用 mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用（需要先在根节点注入 store）：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; mapActions &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-attr">methods</span>: &#123;<br>    ...<span class="hljs-title function_">mapActions</span>([<br>      <span class="hljs-string">&#x27;increment&#x27;</span> <span class="hljs-comment">// 映射 this.increment() 为 this.$store.dispatch(&#x27;increment&#x27;)</span><br>    ]),<br>    ...<span class="hljs-title function_">mapActions</span>(&#123;<br>      <span class="hljs-attr">add</span>: <span class="hljs-string">&#x27;increment&#x27;</span> <span class="hljs-comment">// 映射 this.add() 为 this.$store.dispatch(&#x27;increment&#x27;)</span><br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="组合-Actions"><a href="#组合-Actions" class="headerlink" title="组合 Actions"></a>组合 Actions</h3><p>Action 通常是异步的，那么如何知道 action 什么时候结束呢？更重要的是，我们如何才能组合多个 action，以处理更加复杂的异步流程？</p>
+<p>首先，你需要明白 store.dispatch 可以处理被触发的action的回调函数返回的Promise，并且store.dispatch仍旧返回Promise：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">actions</span>: &#123;<br>  <span class="hljs-title function_">actionA</span> (&#123; commit &#125;) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-title function_">commit</span>(<span class="hljs-string">&#x27;someMutation&#x27;</span>)<br>        <span class="hljs-title function_">resolve</span>()<br>      &#125;, <span class="hljs-number">1000</span>)<br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>现在你可以：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js">store.<span class="hljs-title function_">dispatch</span>(<span class="hljs-string">&#x27;actionA&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-comment">// ...</span><br>&#125;)<br>在另外一个 action 中也可以：<br><br><span class="hljs-attr">actions</span>: &#123;<br>  <span class="hljs-comment">// ...</span><br>  <span class="hljs-title function_">actionB</span> (&#123; dispatch, commit &#125;) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">dispatch</span>(<span class="hljs-string">&#x27;actionA&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-title function_">commit</span>(<span class="hljs-string">&#x27;someOtherMutation&#x27;</span>)<br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最后，如果我们利用 async &#x2F; await 这个 JavaScript 即将到来的新特性，我们可以像这样组合 action：</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs dns">// 假设 getData<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> 和 getOtherData<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> 返回的是 Promise<br><br>actions: &#123;<br>  async actionA <span class="hljs-punctuation">(</span>&#123; commit &#125;<span class="hljs-punctuation">)</span> &#123;<br>    commit<span class="hljs-punctuation">(</span>&#x27;gotData&#x27;, await getData<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span><br>  &#125;,<br>  async actionB <span class="hljs-punctuation">(</span>&#123; dispatch, commit &#125;<span class="hljs-punctuation">)</span> &#123;<br>    await dispatch<span class="hljs-punctuation">(</span>&#x27;actionA&#x27;<span class="hljs-punctuation">)</span> // 等待 actionA 完成<br>    commit<span class="hljs-punctuation">(</span>&#x27;gotOtherData&#x27;, await getOtherData<span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span><span class="hljs-punctuation">)</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>一个 store.dispatch 在不同模块中可以触发多个 action 函数。在这种情况下，只有当所有触发函数完成后，返回的 Promise 才会执行。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><p>Vuex文档：<a target="_blank" rel="noopener" href="https://vuex.vuejs.org/zh-cn/">点击进入</a></p>
+</li>
+<li><p>Vuex官网例子：<a target="_blank" rel="noopener" href="https://github.com/vuejs/vuex/tree/dev/examples">点击进入</a></p>
+</li>
+</ul>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/my-note/js/events.js" ></script>
+<script  src="/my-note/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/my-note/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/my-note/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/my-note/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

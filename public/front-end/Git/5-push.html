@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/my-note/img/fluid.png">
+  <link rel="icon" href="/my-note/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Lious">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前面学会了如何在本地用 git 创建项目版本，本节咱们看看咋把新版本上传到 github.com 之上。 准备工作：删除第一天创建的项目如何删除一个 github.com 的仓库呢？ 首先到仓库页面：https:&#x2F;&#x2F;github.com&#x2F;l552177239&#x2F;l552177239.github.io 点 Settings（设置）这一个标签。打开的页面底部有一个 “Delete this repos">
+<meta property="og:type" content="website">
+<meta property="og:title" content="上传代码到 Github.com">
+<meta property="og:url" content="https://l552177239.github.io/my-note/front-end/Git/5-push.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="前面学会了如何在本地用 git 创建项目版本，本节咱们看看咋把新版本上传到 github.com 之上。 准备工作：删除第一天创建的项目如何删除一个 github.com 的仓库呢？ 首先到仓库页面：https:&#x2F;&#x2F;github.com&#x2F;l552177239&#x2F;l552177239.github.io 点 Settings（设置）这一个标签。打开的页面底部有一个 “Delete this repos">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-29T11:08:36.269Z">
+<meta property="article:modified_time" content="2026-08-29T11:08:36.269Z">
+<meta property="article:author" content="Lious">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>上传代码到 Github.com - 我的笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/my-note/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/my-note/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/my-note/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"l552177239.github.io","root":"/my-note/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/my-note/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/my-note/js/utils.js" ></script>
+  <script  src="/my-note/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/my-note/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/front-end/" target="_self">
+                <i class="iconfont icon-code"></i>
+                <span>前端</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>联系我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/front-end/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-code"></i>
+                  <span>前端</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>联系我</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/my-note/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="上传代码到 Github.com"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <p>前面学会了如何在本地用 git 创建项目版本，本节咱们看看咋把新版本上传到 github.com 之上。</p>
+<h3 id="准备工作：删除第一天创建的项目"><a href="#准备工作：删除第一天创建的项目" class="headerlink" title="准备工作：删除第一天创建的项目"></a>准备工作：删除第一天创建的项目</h3><p>如何删除一个 github.com 的仓库呢？</p>
+<p>首先到仓库页面：<a target="_blank" rel="noopener" href="https://github.com/l552177239/l552177239.github.io">https://github.com/l552177239/l552177239.github.io</a></p>
+<p>点 Settings（设置）这一个标签。打开的页面底部有一个 “Delete this repository” 按钮，意思是”删除这个仓库“，点击按钮。打开的界面中，输入一下这个仓库的名字 l552177239.github.io 就可以把这个仓库删除了。</p>
+<p>删除仓库之后，我们要做的事情是：</p>
+<blockquote>
+<p>如何把本地的已有仓库，上传到 github.com</p>
+</blockquote>
+<h3 id="第一步：创建本地项目"><a href="#第一步：创建本地项目" class="headerlink" title="第一步：创建本地项目"></a>第一步：创建本地项目</h3><p>项目名称是任意的，但是我们这里想做的事情是上传比较，所以，本地这个仓库名，也必须是：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">mkdir l552177239.github.io<br></code></pre></td></tr></table></figure>
+
+<p>本地项目名要和 github.com 我们一会儿要创建的仓库名保持一致。</p>
+<p>然后，我们就可以把我们想要上传的内容拷贝到这个文件夹内，并制作本地版本。</p>
+<p>拷贝进来的内容，要符合第一天我们介绍的 github pages 的格式规范（其实最重要的一点就是每个 .md 文件中都要有头部，参考第一天我们的文档中的介绍）。</p>
+<h3 id="第二步：创建-github-com-上的同名仓库"><a href="#第二步：创建-github-com-上的同名仓库" class="headerlink" title="第二步：创建 github.com 上的同名仓库"></a>第二步：创建 github.com 上的同名仓库</h3><p>到 github.com 上点 <code>New repository</code> 按钮，新建一个项目，<br>项目名叫做 <code>l552177239.github.io</code> 。</p>
+<blockquote>
+<p>注意，不要勾选任何选项，尤其是不能默认创建 README.md 文件。</p>
+</blockquote>
+<p>创建完成之后，页面上有两个选择，其中第二个是</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver"><span class="hljs-keyword">or</span> push <span class="hljs-keyword">an</span> existing repository <span class="hljs-built_in">from</span> <span class="hljs-keyword">the</span> <span class="hljs-keyword">command</span> <span class="hljs-title">line</span><br></code></pre></td></tr></table></figure>
+
+<p>翻译：或者把一个已经存在的仓库从命令行推送上来</p>
+<p>我们当前就属于这个情况。上传方式有两种 HTTPS 和 SSH ，我们推荐的方式是 SSH，点一下页面上 SSH 字样的按钮。</p>
+<p>接下来就按照页面上显示的两步来走。</p>
+<h3 id="尝试推送-push"><a href="#尝试推送-push" class="headerlink" title="尝试推送 push"></a>尝试推送 push</h3><p>到本地命令行，进入我们的本地项目文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> l552177239.github.io<br></code></pre></td></tr></table></figure>
+
+<p>然后执行下面两步：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git remote add origin git@github<span class="hljs-selector-class">.com</span>:funnydeer/funnydeer<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><span class="hljs-selector-class">.git</span><br>git push -u origin master<br></code></pre></td></tr></table></figure>
+
+<p>如上所示：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git@github<span class="hljs-selector-class">.com</span>:funnydeer/funnydeer<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span>.git<br></code></pre></td></tr></table></figure>
+<p>这个是远端仓库地址。第一个命令本身的意思是把远端仓库地址记录到本地仓库中。</p>
+<p>下一步 <code>git push -u origin master</code> 就是真正进行上传代码的工作了。</p>
+<p>但是执行结果是：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">Please make sure you have the correct <span class="hljs-keyword">access</span> rights<br></code></pre></td></tr></table></figure>
+
+<p>执行失败，解决方法就是添加 ssh 公钥到 github.com 。</p>
+<h3 id="第三步：添加-ssh-key"><a href="#第三步：添加-ssh-key" class="headerlink" title="第三步：添加 ssh key"></a>第三步：添加 ssh key</h3><p>现在需要达成开发机和 github.com 的互信。</p>
+<p>因为开发过程中，我们需要用本地机器向 github.com 的仓库中<br>写东西（ git push ），同时我们又不想每次都输入密码，所以我们就用 ssh key 的形式来达成互信，过程如下：</p>
+<ul>
+<li>在本地机器上生成一对 ssh key ，一个公钥，一个私钥</li>
+<li>把公钥添加到 github.com</li>
+</ul>
+<p>具体操作如下：</p>
+<ul>
+<li>首先本地运行 <code>ssh-keygen</code> 命令，可以在 ~&#x2F;.ssh 文件夹下生产 ssh key</li>
+<li>到 <code>~/.ssh/id_rsa.pub</code> 也就是公钥文件中，拷贝公钥字符串</li>
+<li>把字符串粘贴到 github.com -&gt; setting -&gt; ssh keys -&gt; add</li>
+</ul>
+<p>这样添加 ssh key 的工作就完成了，以后我们执行 git push 这样的命令就不会看到如下错误了：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-string">...permission</span> denied.<span class="hljs-string">..</span><br><span class="hljs-string">...make</span> sure <span class="hljs-string">...</span> correct access right <span class="hljs-string">...</span><br></code></pre></td></tr></table></figure>
+
+<p>大功告成。</p>
+<h3 id="Github-Pages-显示网站"><a href="#Github-Pages-显示网站" class="headerlink" title="Github Pages 显示网站"></a>Github Pages 显示网站</h3><p>上面的步骤操作完成，就可以在 l552177239.github.io 看到网站的首页了。<br>当然我们这里依然是使用 Github Pages 服务，所以是可以添加 md 文件的。</p>
+<p>下面，我们涉及到如何把网站做的好看一些的问题。这个需要了解 github Pages 底层的机制。底层 Github Pages 采用了 Jekyll 框架。</p>
+<h3 id="Jekyll-框架"><a href="#Jekyll-框架" class="headerlink" title="Jekyll 框架"></a>Jekyll 框架</h3><p>要把 Github Pages 的网站做漂亮，必须了解 Jekyll 框架如何运行的。</p>
+<p>首先，.md 文件，也就是 markdown 格式的支持，就是 Jekyll 提供给我们的。这个前面已经详细介绍过了。</p>
+<p>现在，我们来添加<strong>布局文件</strong></p>
+<ul>
+<li>英文参考文档：<a target="_blank" rel="noopener" href="https://jekyllrb.com/docs/frontmatter/">官网</a></li>
+<li>中文参考文档（有可能过期）： <a target="_blank" rel="noopener" href="http://jekyll.com.cn/docs/frontmatter/">中文网</a></li>
+</ul>
+<h3 id="Jekyll-添加布局文件"><a href="#Jekyll-添加布局文件" class="headerlink" title="Jekyll: 添加布局文件"></a>Jekyll: 添加布局文件</h3><p>首先打开所有的 .md 中的头部改成这样</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">First</span> <span class="hljs-string">Page</span><br><span class="hljs-attr">layout:</span> <span class="hljs-string">default</span><br><span class="hljs-meta">---</span><br><span class="hljs-meta"></span><br></code></pre></td></tr></table></figure>
+
+<p>然后来创建布局文件 default.html ，这个文件必须存放到 _layouts 文件夹之内，</p>
+<p>_layouts&#x2F;default.html 内容如下，可以参考我的其他项目中的写法。例如：</p>
+<pre><code class="hljs">anything anything
+  content
+anything anything
+</code></pre>
+<p>注意，上面的 content 外面要套两个大括号。</p>
+<p><code>anything anything</code> 可以替换成任意字符端，当然也可以替换成 html 代码。所以就可以给 .md 文件引入 main.css 了。</p>
+<h3 id="Jekyll-引用-main-css"><a href="#Jekyll-引用-main-css" class="headerlink" title="Jekyll: 引用 main.css"></a>Jekyll: 引用 main.css</h3><p>_layouts&#x2F;default.html 中这样写</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/css/main.css&quot;</span></span><br><span class="hljs-tag">  &lt;/<span class="hljs-attr">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    content<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：上面的 content 外面要套两层大括号。另外，特别要注意的是 main.css 一定不能写到 _layouts 文件夹，或者任意的以 _ 打头的文件夹内。</p>
+</blockquote>
+<p>当前，我们的 main.css 要放到项目顶级文件夹下的 css 文件夹之内</p>
+<p>css&#x2F;main.css</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">body</span> &#123;<br>  <span class="hljs-attribute">background</span>: <span class="hljs-number">#bada55</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="git-clone-命令"><a href="#git-clone-命令" class="headerlink" title="git clone 命令"></a>git clone 命令</h3><p>要想把 github 上的一个项目代码下载到本地有两种方式，一种就是普通下载（ download ）。但是，开发者<br>基本上会选择另外一种方式，就是 clone 。</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">git <span class="hljs-keyword">clone</span> <span class="hljs-title">&lt;版本库的网址&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>clone 的特点就是不仅仅可以得到最新代码，而且可以得到整个改版历史。而普通下载只能得到最新版本。</p>
+<h3 id="解决remote-origin-already-exists问题"><a href="#解决remote-origin-already-exists问题" class="headerlink" title="解决remote origin already exists问题"></a>解决remote origin already exists问题</h3><p>远程源已经存在问题</p>
+<p>1、先删除远程 git 仓库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git remote <span class="hljs-built_in">rm</span> origin<br></code></pre></td></tr></table></figure>
+
+<p>2、再添加远程 Git 仓库</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">git remote <span class="hljs-keyword">add</span><span class="language-bash"> origin https://github.com/l552177239/webpack.git</span><br></code></pre></td></tr></table></figure>
+
+<p>如果执行 git remote rm origin 报错的话，我们可以手动修改gitconfig文件的内容</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">vi .git/config<br></code></pre></td></tr></table></figure>
+
+<p>把 [remote “origin”] 那一行删掉就好了</p>
+<p>参考地址：<a target="_blank" rel="noopener" href="http://blog.csdn.net/top_code/article/details/50381432">点击进入</a></p>
+<h3 id="git-各个命令的作用"><a href="#git-各个命令的作用" class="headerlink" title="git 各个命令的作用"></a>git 各个命令的作用</h3><ul>
+<li><code>git push</code> 把本地仓库中有，而远端对应仓库中没有的<strong>版本</strong>推送到远端</li>
+<li><code>git pull</code> 把远端仓库中有，而本地对应仓库中没有的<strong>版本</strong>拉到本地</li>
+<li><code>git clone</code> 把远端仓库，克隆到本地</li>
+</ul>
+<h3 id="学习-Github-Git-的学习目标"><a href="#学习-Github-Git-的学习目标" class="headerlink" title="学习 Github&#x2F;Git 的学习目标"></a>学习 Github&#x2F;Git 的学习目标</h3><ul>
+<li>知道 git 是<strong>版本控制</strong>工具</li>
+<li>要有一个 github 仓库</li>
+<li>已经添加 ssh key 互信，也就是可以从本地仓库推送内容（ git push ）到 github 仓库</li>
+<li>可以在本地仓库中任意添加，删除，修改文件，并作成版本</li>
+</ul>
+<p>这样，github&#x2F;git 的初级使用我们就有能力完成了。但是，作为成熟开发者，github 上面会发 push request ，本地 git 会开启新分支，都是必备知识。暂时我们先不涉及。</p>
+<h3 id="承前启后"><a href="#承前启后" class="headerlink" title="承前启后"></a>承前启后</h3><p>程序员三大基本工具</p>
+<ul>
+<li>编辑器 atom</li>
+<li>命令行 Linux</li>
+<li>版本控制 Git&#x2F;Github</li>
+</ul>
+<p>学习上面三大工具的目的，就是为了更加高效的<strong>写代码</strong> 。</p>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/my-note/js/events.js" ></script>
+<script  src="/my-note/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/my-note/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/my-note/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/my-note/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

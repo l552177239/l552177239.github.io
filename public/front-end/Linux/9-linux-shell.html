@@ -1,0 +1,702 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/my-note/img/fluid.png">
+  <link rel="icon" href="/my-note/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Lious">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="初识命令行界面 Shell 是系统的用户界面，提供了用户与内核进行交互操作的一种接口。它接收用户输入的命令并把它送入内核去执行。 shell 环境Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。 Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。 Ken Thompson">
+<meta property="og:type" content="website">
+<meta property="og:title" content="page.title">
+<meta property="og:url" content="https://l552177239.github.io/my-note/front-end/Linux/9-linux-shell.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="初识命令行界面 Shell 是系统的用户界面，提供了用户与内核进行交互操作的一种接口。它接收用户输入的命令并把它送入内核去执行。 shell 环境Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。 Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。 Ken Thompson">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-29T11:08:36.280Z">
+<meta property="article:modified_time" content="2026-08-29T11:08:36.280Z">
+<meta property="article:author" content="Lious">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>page.title - 我的笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/my-note/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/my-note/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/my-note/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"l552177239.github.io","root":"/my-note/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/my-note/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/my-note/js/utils.js" ></script>
+  <script  src="/my-note/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/my-note/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/front-end/" target="_self">
+                <i class="iconfont icon-code"></i>
+                <span>前端</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>联系我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/front-end/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-code"></i>
+                  <span>前端</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>联系我</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/my-note/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="page.title"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h1 id="初识命令行界面"><a href="#初识命令行界面" class="headerlink" title="初识命令行界面"></a>初识命令行界面</h1><p> Shell 是系统的用户界面，提供了用户与内核进行交互操作的一种接口。它接收用户输入的命令并把它送入内核去执行。</p>
+<h3 id="shell-环境"><a href="#shell-环境" class="headerlink" title="shell 环境"></a>shell 环境</h3><p>Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。</p>
+<p>Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。</p>
+<p>Ken Thompson 的 sh 是第一种 Unix Shell，Windows Explorer 是一个典型的图形界面 Shell。</p>
+<h3 id="怎么进入-状态行界面"><a href="#怎么进入-状态行界面" class="headerlink" title="怎么进入 状态行界面"></a>怎么进入 状态行界面</h3><p>我们平时在图形界面用的都是普通用户，没有系统用户权限不能修改一些系统配置文件，那么怎么获取系统权限</p>
+<h4 id="获取系统权限"><a href="#获取系统权限" class="headerlink" title="获取系统权限"></a>获取系统权限</h4><p>在Linux系统下，以普通用户身份登录之后，可以按照以下步骤使用下root权限</p>
+<p>在普通用户下登录 Linux：如果是<code>xx@PC:~$</code>，则表明当前是普通用户</p>
+<h5 id="修改-root-密码："><a href="#修改-root-密码：" class="headerlink" title="修改 root 密码："></a>修改 root 密码：</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> passwd root<br></code></pre></td></tr></table></figure>
+
+<p>会提示你输入密码，及新的密码，如下所示：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-attr">[sudo]</span> liuenqing 的密码：<span class="hljs-selector-attr">[输入密码]</span><br>输入新的 UNIX 密码：<span class="hljs-selector-attr">[输入新密码]</span><br>重新输入新的 UNIX 密码：<span class="hljs-selector-attr">[输入新密码]</span><br></code></pre></td></tr></table></figure>
+
+<p>若显示<code>passwd：已成功更新密码</code>，此时，root用户已经启用。</p>
+<h5 id="进入root的操作如下："><a href="#进入root的操作如下：" class="headerlink" title="进入root的操作如下："></a>进入root的操作如下：</h5><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">su</span> -<br></code></pre></td></tr></table></figure>
+
+<p>会提示你输入密码</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">su -<br>密码：<span class="hljs-selector-attr">[输入密码]</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果和下面代码一样<code>$</code>变成了<code>#</code>，说明现在是使用root用户。</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ruby">liuenqing<span class="hljs-variable">@liuenqing</span>-<span class="hljs-variable constant_">PC</span><span class="hljs-symbol">:~</span><span class="hljs-variable">$ </span>su -<br>密码：<br>root<span class="hljs-variable">@liuenqing</span>-<span class="hljs-variable constant_">PC</span><span class="hljs-symbol">:~</span><span class="hljs-comment">#</span><br></code></pre></td></tr></table></figure>
+
+<p>此时，已经可以进行root权限的操作了</p>
+<p><strong>注意</strong>: 输入密码，系统为了安全起见，它不把输入的密码隐藏起来，所以看不到你输入的密码。因此在这里请不要纠结。</p>
+<p><strong>小贴士</strong>：这里说一下<code>su -root</code>和<code>su root</code>的区别：</p>
+<ul>
+<li>su  是不改变当前变量</li>
+<li>su  后面不加用户是默认切到 root</li>
+<li>su  只能获得root的执行权限，不能获得环境变量</li>
+<li>su - 是改变为切换到用户的变量</li>
+<li>su - 是切换到root并获得root的环境变量及执行权限</li>
+</ul>
+<h5 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h5><p>如果想重新回到普通用户的话，则可以直接使用下面语句：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">su</span><span class="hljs-meta"> [普通用户名]</span><br></code></pre></td></tr></table></figure>
+
+<p>该过程不需要输入密码。</p>
+<h4 id="方法一：图形界面中怎么进入-命令行界面"><a href="#方法一：图形界面中怎么进入-命令行界面" class="headerlink" title="方法一：图形界面中怎么进入 命令行界面"></a>方法一：图形界面中怎么进入 命令行界面</h4><p>各种 Linux 版本开机就有好几个界面，一般有7个界面，其中 1 个是图形界面，6 个是控制台界面（输命令），编号为<code>tty1~tty7</code>。</p>
+<p>界面之间切换快捷键：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">Ctrl</span>+Alt [<span class="hljs-built_in">f1</span>~<span class="hljs-built_in">f7</span>]<br><span class="hljs-symbol">Ctrl</span>+Alt+<span class="hljs-meta">Fn</span> [<span class="hljs-built_in">f1</span>~<span class="hljs-built_in">f7</span>]<br><span class="hljs-symbol">Alt</span>+Ctrl+shift+<span class="hljs-meta">Fn</span> [<span class="hljs-built_in">f1</span>~<span class="hljs-built_in">f7</span>]<br><span class="hljs-comment">//一般 f7 为图形界面</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：每个控制台界面需要重新登录。因为只登录了图形界面。</p>
+<h4 id="方法二：终端"><a href="#方法二：终端" class="headerlink" title="方法二：终端"></a>方法二：终端</h4><p>当然有了图形界面，很多人会觉得再用完全控制台模式就很蛋疼。</p>
+<p>在图形界面里可以找到系统工具，里面的终端，即可在图形界面中使用控制台 shell，就像在 windows 里使用 cmd 一样，符合使用 windows 的人的习惯。</p>
+<p>打开终端快捷件</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-title class_">Ctrl</span>+<span class="hljs-title class_">Alt</span>+T<br></code></pre></td></tr></table></figure>
+
+<h4 id="方法三：开机进入命令行界面"><a href="#方法三：开机进入命令行界面" class="headerlink" title="方法三：开机进入命令行界面"></a>方法三：开机进入命令行界面</h4><p>有些人可能不想习惯图形模式，反而习惯dos的命令模式，怎么才能一开机就是控制台模式，而不要进入图形界面呢？</p>
+<p>这是因为Linux操作系统有六种不同的运行级别(见 &#x2F;etc&#x2F;inittab 文件中描述)，在不同的运行级下，系统有着不同的状态，这六种运行级分别为:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-title class_">Default</span> runlevel. <span class="hljs-title class_">The</span> runlevels used by RHS are:  <br><span class="hljs-number">0</span> - halt (<span class="hljs-title class_">Do</span> NOT <span class="hljs-keyword">set</span> initdefault to <span class="hljs-keyword">this</span>)  <br><span class="hljs-number">1</span> - <span class="hljs-title class_">Single</span> user mode  <br><span class="hljs-number">2</span> - <span class="hljs-title class_">Multiuser</span>, without NFS (<span class="hljs-title class_">The</span> same <span class="hljs-keyword">as</span> <span class="hljs-number">3</span>, <span class="hljs-keyword">if</span> you <span class="hljs-keyword">do</span> not have networking)  <br><span class="hljs-number">3</span> - <span class="hljs-title class_">Full</span> multiuser mode  <br><span class="hljs-number">4</span> - unused  <br><span class="hljs-number">5</span> - <span class="hljs-title class_">X11</span>  <br><span class="hljs-number">6</span> - reboot (<span class="hljs-title class_">Do</span> NOT <span class="hljs-keyword">set</span> initdefault to <span class="hljs-keyword">this</span>)  <br></code></pre></td></tr></table></figure>
+
+<p>0：停机（记住不要把initdefault设置为0，因为这样会使Linux无法启动）<br>1：单用户模式，就像Win9X下的安全模式。<br>2：多用户，但是没有 NFS 。<br>3：完全多用户模式，标准的运行级。<br>4：一般不用，在一些特殊情况下可以用它来做一些事情。<br>5：X11，即进到 X-Window 系统。<br>6：重新启动（记住不要把initdefault设置为6，否则会使Linux不断地重新启动）</p>
+<p>也就是说linux共6种启动方式，模式5是进入图形界面，而模式3是进入控制台界面。而现在的图形界面操作系统，默认为模式5启动。</p>
+<h4 id="在老版本的-Linux-中"><a href="#在老版本的-Linux-中" class="headerlink" title="在老版本的 Linux 中"></a>在老版本的 Linux 中</h4><p>为了让Linux系统在启动后能直接进入到控制台字符操作模式，我们可以配置&#x2F;etc&#x2F;inittab文件。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">vi <span class="hljs-regexp">/etc/i</span>nittab<br></code></pre></td></tr></table></figure>
+
+<p>找到<code>id:5: initdefault:</code>改为下面代码</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs qml"><span class="hljs-attribute">id:</span><span class="hljs-string">3:initdefault</span>:<br></code></pre></td></tr></table></figure>
+
+<p>然后后重新启动系统，就能实现启动时直接进入控制台字符操作界面。</p>
+<h4 id="新版本中的方法"><a href="#新版本中的方法" class="headerlink" title="新版本中的方法"></a>新版本中的方法</h4><p><strong>推荐方法</strong></p>
+<p>因为开机时可以选择进入命令行还是界面模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> +w /boot/grub/grub.cfg<br>//增加可写权限<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo gedit <span class="hljs-regexp">/boot/g</span>rub/grub.cfg<br><span class="hljs-regexp">//</span>编辑配置文件<br></code></pre></td></tr></table></figure>
+
+<p>会找到小面这段文字：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs subunit">menuentry &#x27;Ubuntu，Linux 3.2.0<span class="hljs-string">-24</span>-generic-pae&#x27; --class ubuntu --class gnu-linux --class gnu --class os &#123;<br>    recordfail<br>    gfxmode $linux_gfx_mode<br>    insmod gzio<br>    insmod part_msdos<br>    insmod ext2<br>    set root=&#x27;(hd0,msdos8)&#x27;<br>    search --no-floppy --fs-uuid --set=root 689a61a1<span class="hljs-string">-06</span>fd<span class="hljs-string">-4</span>ffe<span class="hljs-string">-95</span>d7<span class="hljs-string">-8671</span>e97bbe81<br>    linux    /boot/vmlinuz<span class="hljs-string">-3</span>.2.0<span class="hljs-string">-24</span>-generic-pae root=UUID=689a61a1<span class="hljs-string">-06</span>fd<span class="hljs-string">-4</span>ffe<span class="hljs-string">-95</span>d7<span class="hljs-string">-8671</span>e97bbe81 ro  quiet splash $vt_handoff<br>    initrd    /boot/initrd.img<span class="hljs-string">-3</span>.2.0<span class="hljs-string">-24</span>-generic-pae<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>复制上面的文字，并在后面粘贴下来。</p>
+<p>修改一些设置。修改后如下</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs subunit">menuentry &#x27;Ubuntu，Linux 3.2.0<span class="hljs-string">-24</span>-generic-pae(command mode)&#x27; --class ubuntu --class gnu-linux --class gnu --class os &#123;<br>    recordfail<br>    gfxmode $linux_gfx_mode<br>    insmod gzio<br>    insmod part_msdos<br>    insmod ext2<br>    set root=&#x27;(hd0,msdos8)&#x27;<br>    search --no-floppy --fs-uuid --set=root 689a61a1<span class="hljs-string">-06</span>fd<span class="hljs-string">-4</span>ffe<span class="hljs-string">-95</span>d7<span class="hljs-string">-8671</span>e97bbe81<br>    linux    /boot/vmlinuz<span class="hljs-string">-3</span>.2.0<span class="hljs-string">-24</span>-generic-pae root=UUID=689a61a1<span class="hljs-string">-06</span>fd<span class="hljs-string">-4</span>ffe<span class="hljs-string">-95</span>d7<span class="hljs-string">-8671</span>e97bbe81 ro text<br>    initrd    /boot/initrd.img<span class="hljs-string">-3</span>.2.0<span class="hljs-string">-24</span>-generic-pae<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这就可以了。我的是物理机直接安装的，在开机时就有菜单了，直接选择 Ubuntu，Linux 3.2.0-24-generic-pae(command mode) 这个选项即可</p>
+<p>如果 <strong>虚拟机安装</strong> 的话，也许开机是没有选项的（我用的VM虚拟机安装默认的就没有选择菜单）解决方法如下：</p>
+<p>开机启动时，grub菜单 系统默认是隐藏的，去掉隐藏需要做如下操作</p>
+<p>你需要修改<code>/etc/default/grub</code>其中的某一行（自己找找，就在前面），</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> gedit /etc/default/grub<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">GRUB_HIDDEN_TIMEOUT</span>=<span class="hljs-number">0</span>（默认是<span class="hljs-number">0</span>，修要修改成大于<span class="hljs-number">0</span>的值，比如<span class="hljs-number">10</span>）<br></code></pre></td></tr></table></figure>
+
+<p>保存后退出！</p>
+<p>再执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> update-grub<br></code></pre></td></tr></table></figure>
+
+<p>好了，设置完成</p>
+<p><strong>方法二</strong></p>
+<p>开机直接进入控制台界面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> gedit /etc/default/grub<br></code></pre></td></tr></table></figure>
+
+<p>找到这一行</p>
+<figure class="highlight freedesktop"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs freedesktop"><span class="hljs-attr">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="hljs-operator">=</span><span class="hljs-string">&quot;quiet splash&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>改成</p>
+<figure class="highlight freedesktop"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs freedesktop"><span class="hljs-attr">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="hljs-operator">=</span><span class="hljs-string">&quot;quiet splash text&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>在输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> update-grub<br></code></pre></td></tr></table></figure>
+
+<p>开机后就自动进入 tty1 了</p>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/my-note/js/events.js" ></script>
+<script  src="/my-note/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/my-note/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/my-note/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/my-note/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

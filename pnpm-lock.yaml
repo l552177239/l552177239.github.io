@@ -41,6 +41,9 @@ importers:
       hexo-server:
         specifier: ^3.0.0
         version: 3.0.0
+      hexo-theme-fluid:
+        specifier: ^1.9.9
+        version: 1.9.9(nunjucks@3.2.4(chokidar@3.6.0))
       hexo-theme-landscape:
         specifier: ^1.0.0
         version: 1.1.0
@@ -473,6 +476,12 @@ packages:
   hexo-server@3.0.0:
     resolution: {integrity: sha512-u4s0ty9Aew6jV+a9oMrXBwhrRpUQ0U8PWM/88a5aHgDru58VY81mVrxOFxs788NAsWQ8OvsJtF5m7mnXoRnSIA==}
     engines: {node: '>=12.13.0'}
+
+  hexo-theme-fluid@1.9.9:
+    resolution: {integrity: sha512-Z1EgMiIOeVpaNYQsjUi1PWIA9li/7bkUK+WEL8ehV5uj7nU3VjkAPqSrJDCLV4fDdwFX8HBDM3CaNfl14VKx3g==}
+    engines: {node: '>=8.10.0'}
+    peerDependencies:
+      nunjucks: ^3.0.0
 
   hexo-theme-landscape@1.1.0:
     resolution: {integrity: sha512-nszjixBEiEDZjf7glAGbHg0nKGHZdUDwzFVVdRDeu4FeHfGcY5CZNl9sF4vSligjnD8IwFXpDfx5E+GRmNKvWg==}
@@ -1431,6 +1440,10 @@ snapshots:
       serve-static: 1.16.3
     transitivePeerDependencies:
       - supports-color
+
+  hexo-theme-fluid@1.9.9(nunjucks@3.2.4(chokidar@3.6.0)):
+    dependencies:
+      nunjucks: 3.2.4(chokidar@3.6.0)
 
   hexo-theme-landscape@1.1.0: {}
 

@@ -1,0 +1,770 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/my-note/img/fluid.png">
+  <link rel="icon" href="/my-note/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Lious">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Webpack环境配置创建并进入一个文件夹wepback:1mkdir webpack &amp;&amp; cd webpack  在webpack中创建一个src -&gt; index.js1mkdir src &amp;&amp; touch src&#x2F;index.js  初始化项目：npm init这会提示你关于项目的更多细节，并创建一个 package.json 文件。 使用 -y 标记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="page.title">
+<meta property="og:url" content="https://l552177239.github.io/my-note/front-end/React/4-webpack.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="Webpack环境配置创建并进入一个文件夹wepback:1mkdir webpack &amp;&amp; cd webpack  在webpack中创建一个src -&gt; index.js1mkdir src &amp;&amp; touch src&#x2F;index.js  初始化项目：npm init这会提示你关于项目的更多细节，并创建一个 package.json 文件。 使用 -y 标记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-29T11:08:36.300Z">
+<meta property="article:modified_time" content="2026-08-29T11:08:36.300Z">
+<meta property="article:author" content="Lious">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>page.title - 我的笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/my-note/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/my-note/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/my-note/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"l552177239.github.io","root":"/my-note/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/my-note/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/my-note/js/utils.js" ></script>
+  <script  src="/my-note/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/my-note/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/front-end/" target="_self">
+                <i class="iconfont icon-code"></i>
+                <span>前端</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>联系我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/front-end/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-code"></i>
+                  <span>前端</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>联系我</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/my-note/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="page.title"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h2 id="Webpack环境配置"><a href="#Webpack环境配置" class="headerlink" title="Webpack环境配置"></a>Webpack环境配置</h2><h3 id="创建并进入一个文件夹wepback"><a href="#创建并进入一个文件夹wepback" class="headerlink" title="创建并进入一个文件夹wepback:"></a>创建并进入一个文件夹wepback:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> webpack &amp;&amp; <span class="hljs-built_in">cd</span> webpack<br></code></pre></td></tr></table></figure>
+
+<h3 id="在webpack中创建一个src-index-js"><a href="#在webpack中创建一个src-index-js" class="headerlink" title="在webpack中创建一个src -&gt; index.js"></a>在webpack中创建一个src -&gt; index.js</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> src &amp;&amp; <span class="hljs-built_in">touch</span> src/index.js<br></code></pre></td></tr></table></figure>
+
+<h3 id="初始化项目："><a href="#初始化项目：" class="headerlink" title="初始化项目："></a>初始化项目：</h3><p>npm init这会提示你关于项目的更多细节，并创建一个 package.json 文件。</p>
+<p>使用 -y 标记表示你能接受 package.json 文件的一堆：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> init -y<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：项目名不要和包名相同，否则可能会出错误。</p>
+<h3 id="如果项目名和包名相同，修改Webpack-package-json项目名"><a href="#如果项目名和包名相同，修改Webpack-package-json项目名" class="headerlink" title="如果项目名和包名相同，修改Webpack -&gt; package.json项目名"></a>如果项目名和包名相同，修改Webpack -&gt; package.json项目名</h3><p>因为项目名与包名相同，所以修改项目名</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;webpack-demo&quot;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
+
+<p>创建一个<code>index.html</code>，将下面代码放入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Webpack<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;root&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;dist/bundle.js&#x27;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="安装serve："><a href="#安装serve：" class="headerlink" title="安装serve："></a>安装serve：</h3><p>一个开发服务器，方便我们进行测试</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">npm <span class="hljs-selector-tag">i</span> serve -<span class="hljs-selector-tag">g</span><br></code></pre></td></tr></table></figure>
+
+<p>需要启动服务器时，<code>serve</code>会自动寻找<code>index.html</code>，如果文件名为其他需输入文件名</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">serve</span><span class="hljs-meta"> [文件名]</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="安装webpack："><a href="#安装webpack：" class="headerlink" title="安装webpack："></a>安装webpack：</h3><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">npm</span> install webpack@<span class="hljs-number">2</span>.<span class="hljs-number">6</span>.<span class="hljs-number">1</span> --save-dev<br></code></pre></td></tr></table></figure>
+
+<h3 id="检测是否安装成功："><a href="#检测是否安装成功：" class="headerlink" title="检测是否安装成功："></a>检测是否安装成功：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./node_modules/.bin/webpack --<span class="hljs-built_in">help</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="创建webpack-config-js"><a href="#创建webpack-config-js" class="headerlink" title="创建webpack.config.js"></a>创建webpack.config.js</h3><p>webpack的配置文件</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">const</span> path = <span class="hljs-title function_">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);<br><span class="hljs-comment">//path是nodejs核心文件，用来解析路径</span><br><span class="hljs-comment">//require会把入口文件相关的所有文件都打包</span><br>module.exports = &#123;<br>   entry: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>,<br>   <span class="hljs-comment">//入口文件（打包相关文件）</span><br>   output: &#123;<br>    <span class="hljs-comment">//出口文件（打包到哪里）</span><br>    path: path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&quot;build&quot;</span>),<br>     <span class="hljs-comment">//path：放在哪个文件夹</span><br>     <span class="hljs-comment">//path.resolve：进行拼接</span><br>     <span class="hljs-comment">//__dirname：命令行位置</span><br>    filename: <span class="hljs-string">&quot;bundle.js&quot;</span>,<br>    <span class="hljs-comment">//文件名</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="安装-babel-核心包，在webpack中装载的包"><a href="#安装-babel-核心包，在webpack中装载的包" class="headerlink" title="安装 babel 核心包，在webpack中装载的包"></a>安装 babel 核心包，在webpack中装载的包</h3><h4 id="装包"><a href="#装包" class="headerlink" title="装包"></a>装包</h4><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">npm <span class="hljs-keyword">install </span><span class="hljs-keyword">babel-loader </span><span class="hljs-keyword">babel-core </span>--save-dev<br></code></pre></td></tr></table></figure>
+
+<h4 id="在webpack-config-js配置文件中添加ES6语法转换规则"><a href="#在webpack-config-js配置文件中添加ES6语法转换规则" class="headerlink" title="在webpack.config.js配置文件中添加ES6语法转换规则"></a>在webpack.config.js配置文件中添加ES6语法转换规则</h4><p>添加在<code>module</code>（模块）的<code>rules</code>规则内</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs gradle">module: &#123;<br>  <span class="hljs-comment">//模块</span><br>  rules: [<br>  <span class="hljs-comment">//规则</span><br>    &#123; test: <span class="hljs-regexp">/\.js$/</span>, <span class="hljs-keyword">exclude</span>: <span class="hljs-regexp">/node_modules/</span>, use: <span class="hljs-string">&quot;babel-loader&quot;</span> &#125;<br>    <span class="hljs-comment">//test测试</span><br>    <span class="hljs-comment">//正则匹配js结尾的文件</span><br>    <span class="hljs-comment">//use使用babel-loader将es6处理成为es5语法</span><br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="安装ES6-语法编译为-ES5-的包"><a href="#安装ES6-语法编译为-ES5-的包" class="headerlink" title="安装ES6 语法编译为 ES5 的包"></a>安装ES6 语法编译为 ES5 的包</h3><h4 id="装包-1"><a href="#装包-1" class="headerlink" title="装包"></a>装包</h4><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">npm <span class="hljs-keyword">install </span><span class="hljs-keyword">babel-preset-env </span>--save-dev<br></code></pre></td></tr></table></figure>
+
+<h4 id="安装语法加强包"><a href="#安装语法加强包" class="headerlink" title="安装语法加强包"></a>安装语法加强包</h4><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs q">npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> babel-preset-stage<span class="hljs-number">-0</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="创建-babelrc并配置："><a href="#创建-babelrc并配置：" class="headerlink" title="创建.babelrc并配置："></a>创建.babelrc并配置：</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//自动加载的配置文件</span><br>&#123;<br>  <span class="hljs-string">&quot;presets&quot;</span>: [<span class="hljs-string">&quot;env&quot;</span>,<span class="hljs-string">&quot;stage-0&quot;</span>]<br>  <span class="hljs-comment">//presets：需要启动什么样的预设转码</span><br>  <span class="hljs-comment">//env：可以对BABEL_ENV或者NODE_ENV指定的不同的环境变量，进行不同的编译操作</span><br>  <span class="hljs-comment">//stage-0：将ES7，ES6转换为ES5</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="设置npm-package快捷打包方式"><a href="#设置npm-package快捷打包方式" class="headerlink" title="设置npm package快捷打包方式"></a>设置<code>npm package</code>快捷打包方式</h4><p>修改<code>packageage.json</code>，设置一个命令<code>npm run [名称]</code>来启动这个打包工具</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;build&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;./node_modules/.bin/webpack&quot;</span><br><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="检查是否安装正确"><a href="#检查是否安装正确" class="headerlink" title="检查是否安装正确"></a>检查是否安装正确</h3><h4 id="修改src-index-js"><a href="#修改src-index-js" class="headerlink" title="修改src -&gt; index.js"></a>修改src -&gt; index.js</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">let obj = &#123;<br>  name:<span class="hljs-string">&#x27;Liu&#x27;</span>,<br>  age:<span class="hljs-number">24</span><br>&#125;<br>let &#123;age&#125; = obj<br><br><span class="hljs-function"><span class="hljs-title">alert</span><span class="hljs-params">(age)</span></span><br></code></pre></td></tr></table></figure>
+
+<h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm <span class="hljs-built_in">run</span> build<br></code></pre></td></tr></table></figure>
+
+<h4 id="在webpack下运行"><a href="#在webpack下运行" class="headerlink" title="在webpack下运行"></a>在webpack下运行</h4><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs erlang">serve .<br></code></pre></td></tr></table></figure>
+
+<h4 id="打开本地服务器"><a href="#打开本地服务器" class="headerlink" title="打开本地服务器"></a>打开本地服务器</h4><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">localhost</span>:<span class="hljs-number">5000</span><br></code></pre></td></tr></table></figure>
+
+<p>如果弹出对话框<code>24</code>说明安装成功</p>
+<h3 id="安装react包"><a href="#安装react包" class="headerlink" title="安装react包"></a>安装react包</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css">npm <span class="hljs-selector-tag">i</span> react-dom <span class="hljs-attr">--save</span><br>npm <span class="hljs-selector-tag">i</span> react <span class="hljs-attr">--save</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="安装编译JSX语法包"><a href="#安装编译JSX语法包" class="headerlink" title="安装编译JSX语法包"></a>安装编译JSX语法包</h3><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> i babel-preset-react -D<br></code></pre></td></tr></table></figure>
+
+<h4 id="配置-babelrc"><a href="#配置-babelrc" class="headerlink" title="配置.babelrc"></a>配置.babelrc</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">&#123;<br>  <span class="hljs-string">&quot;presets&quot;</span>: <span class="hljs-selector-attr">[<span class="hljs-string">&quot;env&quot;</span>,<span class="hljs-string">&quot;stage-0&quot;</span>,<span class="hljs-string">&quot;react&quot;</span>]</span><br>  <span class="hljs-comment">//presets：需要启动什么样的预设转码</span><br>  <span class="hljs-comment">//env：可以对BABEL_ENV或者NODE_ENV指定的不同的环境变量，进行不同的编译操作</span><br>  <span class="hljs-comment">//stage-0：将ES7，ES6转换为ES5</span><br>  <span class="hljs-comment">//react：编译JSX语法</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="检查是否能启动React项目"><a href="#检查是否能启动React项目" class="headerlink" title="检查是否能启动React项目"></a>检查是否能启动React项目</h3><h4 id="修改src-index-js-1"><a href="#修改src-index-js-1" class="headerlink" title="修改src -&gt; index.js"></a>修改src -&gt; index.js</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> from <span class="hljs-string">&#x27;react&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">ReactDOM</span> from <span class="hljs-string">&#x27;react-dom&#x27;</span><br><br>let obj = &#123;<br>  name:<span class="hljs-string">&#x27;Liu&#x27;</span>,<br>  age:<span class="hljs-number">24</span><br>&#125;<br>let &#123;age&#125; = obj<br><br><span class="hljs-title function_">alert</span>(age)<br><br><span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(&lt;h1&gt;&#123;age&#125;&lt;/h1&gt;,<span class="hljs-built_in">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;root&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<h4 id="运行-1"><a href="#运行-1" class="headerlink" title="运行"></a>运行</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm <span class="hljs-built_in">run</span> build<br></code></pre></td></tr></table></figure>
+
+<h4 id="在webpack下运行-1"><a href="#在webpack下运行-1" class="headerlink" title="在webpack下运行"></a>在webpack下运行</h4><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs erlang">serve .<br></code></pre></td></tr></table></figure>
+
+<h4 id="打开本地服务器-1"><a href="#打开本地服务器-1" class="headerlink" title="打开本地服务器"></a>打开本地服务器</h4><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">localhost</span>:<span class="hljs-number">5000</span><br></code></pre></td></tr></table></figure>
+
+<p>如果弹出对话框<code>24</code>说明安装成功</p>
+<p>###安装CSS包</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">npm install --<span class="hljs-built_in">save</span>-dev css-loader <span class="hljs-built_in">style</span>-loader<br></code></pre></td></tr></table></figure>
+
+<h4 id="在webpack-config-js配置文件中添加CSS语法转换模块规则"><a href="#在webpack-config-js配置文件中添加CSS语法转换模块规则" class="headerlink" title="在webpack.config.js配置文件中添加CSS语法转换模块规则"></a>在webpack.config.js配置文件中添加CSS语法转换模块规则</h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-punctuation">&#123;</span><br><span class="hljs-symbol">  test:</span> /\.css$/,<br>  <span class="hljs-comment">//test测试</span><br><span class="hljs-symbol">  use:</span> [<span class="hljs-string">&quot;style-loader&quot;</span>,<span class="hljs-string">&quot;css-loader&quot;</span>]<br>  <span class="hljs-comment">//use使用style-loader和css-loader编译css</span><br>  <span class="hljs-comment">//先使用后面的css-loader再使用前面的style-loader进行编译</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="检查是否能启动React项目-1"><a href="#检查是否能启动React项目-1" class="headerlink" title="检查是否能启动React项目"></a>检查是否能启动React项目</h4><h5 id="修改src-index-js-2"><a href="#修改src-index-js-2" class="headerlink" title="修改src -&gt; index.js"></a>修改src -&gt; index.js</h5><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> from <span class="hljs-string">&#x27;react&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">ReactDOM</span> from <span class="hljs-string">&#x27;react-dom&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./index.css&#x27;</span><br><br><span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(&lt;h1&gt;我是<span class="hljs-title class_">H1</span>&lt;/h1&gt;,<span class="hljs-built_in">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;root&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<h5 id="创建src-index-css文件将下面代码放入"><a href="#创建src-index-css文件将下面代码放入" class="headerlink" title="创建src -&gt; index.css文件将下面代码放入"></a>创建src -&gt; <code>index.css</code>文件将下面代码放入</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">*&#123;<br>  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">background</span>: teal;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm <span class="hljs-built_in">run</span> build<br></code></pre></td></tr></table></figure>
+
+<p>在webpack下运行</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs erlang">serve .<br></code></pre></td></tr></table></figure>
+
+<p>打开本地服务器</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">localhost</span>:<span class="hljs-number">50000</span><br></code></pre></td></tr></table></figure>
+
+<p>弹出对话框<code>24</code>说明安装成功</p>
+<h3 id="安装CSS处理插件"><a href="#安装CSS处理插件" class="headerlink" title="安装CSS处理插件"></a>安装CSS处理插件</h3><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> i postcss-loader -D<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-punctuation">&#123;</span><br><span class="hljs-symbol">  test:</span> /\.css$/,<br><span class="hljs-symbol">  use:</span> [<span class="hljs-string">&quot;style-loader&quot;</span>,<span class="hljs-string">&quot;css-loader&quot;</span>,<span class="hljs-string">&quot;postcss-loader&quot;</span>]<br>  <span class="hljs-comment">//添加上postcss</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="CSS兼容"><a href="#CSS兼容" class="headerlink" title="CSS兼容"></a>CSS兼容</h4><h5 id="装包-2"><a href="#装包-2" class="headerlink" title="装包"></a>装包</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">npm i -D <span class="hljs-built_in">auto</span>prefixer cssnano<br><span class="hljs-comment">//autoprefixer：兼容css包</span><br><span class="hljs-comment">//cssnano：压缩css包</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="创建postcss的配置文件postcss-config-js"><a href="#创建postcss的配置文件postcss-config-js" class="headerlink" title="创建postcss的配置文件postcss.config.js"></a>创建<code>postcss</code>的配置文件<code>postcss.config.js</code></h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">plugins</span>: [<br>    <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;autoprefixer&quot;</span>),<br>    <span class="hljs-comment">//兼容css，less编译成css自动加前缀</span><br>    <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;cssnano&quot;</span>)<br>    <span class="hljs-comment">//压缩css</span><br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="后缀补齐功能"><a href="#后缀补齐功能" class="headerlink" title="后缀补齐功能"></a>后缀补齐功能</h3><p>放在<code>webpack.config.js</code>的Module（模块）内</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">resolve:&#123;<br>  extensions:[<span class="hljs-string">&quot;.js&quot;</span>,<span class="hljs-string">&quot;.json&quot;</span>,<span class="hljs-string">&quot;.jsx&quot;</span>,<span class="hljs-string">&quot;.css&quot;</span>]<br>&#125;,<br></code></pre></td></tr></table></figure>
+
+<h3 id="自动调试功能"><a href="#自动调试功能" class="headerlink" title="自动调试功能"></a>自动调试功能</h3><p>错误直接指向自己写的代码</p>
+<p>放在<code>webpack.config.js</code>的Module（模块）内</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">devtool:</span><span class="hljs-string">&quot;source-map&quot;</span>,<br></code></pre></td></tr></table></figure>
+
+<h3 id="导入文件"><a href="#导入文件" class="headerlink" title="导入文件"></a>导入文件</h3><h4 id="装包-3"><a href="#装包-3" class="headerlink" title="装包"></a>装包</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span> --save-dev <span class="hljs-keyword">file</span>-loader<br></code></pre></td></tr></table></figure>
+
+<h4 id="配置webpack-config-js文件"><a href="#配置webpack-config-js文件" class="headerlink" title="配置webpack.config.js文件"></a>配置webpack.config.js文件</h4><p>放在<code>webpack.config.js</code>的Module（模块）规则（rules）内</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs perl">&#123; test: <span class="hljs-regexp">/\.(jpe?g|png)$/</span>, <span class="hljs-keyword">use</span>: <span class="hljs-string">&#x27;file-loader&#x27;</span> &#125;,<br><span class="hljs-regexp">//</span>对导入图片后缀的配置<br></code></pre></td></tr></table></figure>
+
+<p>在<code>output</code>（出口文件）加一个公共的路径</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">publicPath:</span><span class="hljs-string">&quot;dist/&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="检测一下"><a href="#检测一下" class="headerlink" title="检测一下"></a>检测一下</h4><p>在<code>index.js</code>中导入一张图片</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm <span class="hljs-built_in">run</span> build<br></code></pre></td></tr></table></figure>
+
+<h4 id="优化图片的test"><a href="#优化图片的test" class="headerlink" title="优化图片的test"></a>优化图片的<code>test</code></h4><p>在<code>webpack.config.js</code>中添加<code>test</code></p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">&#123; test: /\.(jpe?g|png)$/, use: &#x27;file-loader?name=<span class="hljs-comment">[name]</span><span class="hljs-comment">[hash:5]</span>.<span class="hljs-comment">[ext]</span>&amp;outputPath=images/&#x27; &#125;<br>//name=<span class="hljs-comment">[name]</span><span class="hljs-comment">[hash:5]</span>.<span class="hljs-comment">[ext]</span>：自动添加名称哈希值和后缀<br>//outputPath：图片文件会自动保存在imgages文件夹下<br></code></pre></td></tr></table></figure>
+
+<h3 id="压缩JS"><a href="#压缩JS" class="headerlink" title="压缩JS"></a>压缩<code>JS</code></h3><h4 id="在webpack-config-js中引用webpack"><a href="#在webpack-config-js中引用webpack" class="headerlink" title="在webpack.config.js中引用webpack"></a>在<code>webpack.config.js</code>中引用<code>webpack</code></h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">const</span> webpack = <span class="hljs-title function_">require</span>(<span class="hljs-string">&#x27;webpack&#x27;</span>)<br><span class="hljs-comment">//path是nodejs核心文件，用来解析路径</span><br><span class="hljs-comment">//require会把入口文件相关的所有文件都打包</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="在webpack-config-js的plugins中添加"><a href="#在webpack-config-js的plugins中添加" class="headerlink" title="在webpack.config.js的plugins中添加"></a>在<code>webpack.config.js</code>的<code>plugins</code>中添加</h4><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs nix"><span class="hljs-params">plugins:</span> [<br>  new webpack.optimize.UglifyJsPlugin(&#123;<br>    <span class="hljs-params">compress:</span> &#123;<br>      <span class="hljs-params">warnings:</span> <span class="hljs-literal">false</span>,<br>      <span class="hljs-params">drop_console:</span> <span class="hljs-literal">false</span>,<br>    &#125;<br>  &#125;)<br>]<br></code></pre></td></tr></table></figure>
+
+<h3 id="压缩代码"><a href="#压缩代码" class="headerlink" title="压缩代码"></a>压缩代码</h3><p>添加在<code>plugins</code>中</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">new</span> webpack.<span class="hljs-title class_">DefinePlugin</span>(&#123;<br>  <span class="hljs-string">&#x27;process.env.NODE_ENV&#x27;</span>: <span class="hljs-string">&#x27;&quot;production&quot;&#x27;</span>,<br>&#125;)<br><span class="hljs-comment">//生产文件会导致source-map失效</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="CSS代码分离"><a href="#CSS代码分离" class="headerlink" title="CSS代码分离"></a>CSS代码分离</h3><p>会把CSS单独打包出来</p>
+<h4 id="装包-4"><a href="#装包-4" class="headerlink" title="装包"></a>装包</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">npm install <span class="hljs-attr">--save-dev</span> extract-<span class="hljs-selector-tag">text</span>-webpack-plugin<br></code></pre></td></tr></table></figure>
+
+<h4 id="在webpack-config-js中引用extract-text-webpack-plugin"><a href="#在webpack-config-js中引用extract-text-webpack-plugin" class="headerlink" title="在webpack.config.js中引用extract-text-webpack-plugin"></a>在<code>webpack.config.js</code>中引用<code>extract-text-webpack-plugin</code></h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">const</span> <span class="hljs-title class_">ExtractTextPlugin</span> = <span class="hljs-title function_">require</span>(<span class="hljs-string">&quot;extract-text-webpack-plugin&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="在webpack-config-js中添加test"><a href="#在webpack-config-js中添加test" class="headerlink" title="在webpack.config.js中添加test"></a>在<code>webpack.config.js</code>中添加<code>test</code></h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-punctuation">&#123;</span><br><span class="hljs-symbol">  test:</span> /\.css$/,<br><span class="hljs-symbol">  use:</span> ExtractTextPlugin.extract(<span class="hljs-punctuation">&#123;</span><br><span class="hljs-symbol">    fallback:</span> <span class="hljs-string">&quot;style-loader&quot;</span>,<br><span class="hljs-symbol">    use:</span> [<span class="hljs-string">&quot;css-loader&quot;</span>,<span class="hljs-string">&quot;postcss-loader&quot;</span>]<br>  <span class="hljs-punctuation">&#125;</span>)<br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：把之前写的CSS的<code>test</code>删除</p>
+<h4 id="在webpack-config-js中添加插件（plugins）"><a href="#在webpack-config-js中添加插件（plugins）" class="headerlink" title="在webpack.config.js中添加插件（plugins）"></a>在<code>webpack.config.js</code>中添加插件（plugins）</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">new</span> <span class="hljs-title class_">ExtractTextPlugin</span>(<span class="hljs-string">&quot;styles.css&quot;</span>),<br><span class="hljs-comment">//添加生产文件</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="HTML代码分离"><a href="#HTML代码分离" class="headerlink" title="HTML代码分离"></a>HTML代码分离</h3><h4 id="装包-5"><a href="#装包-5" class="headerlink" title="装包"></a>装包</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">npm <span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">html</span>-webpack-plugin -D<br></code></pre></td></tr></table></figure>
+
+<h4 id="在webpack-config-js中引用html-webpack-plugin"><a href="#在webpack-config-js中引用html-webpack-plugin" class="headerlink" title="在webpack.config.js中引用html-webpack-plugin"></a>在<code>webpack.config.js</code>中引用<code>html-webpack-plugin</code></h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">const</span> <span class="hljs-title class_">HtmlWebpackPlugin</span> = <span class="hljs-title function_">require</span>(<span class="hljs-string">&#x27;html-webpack-plugin&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="在webpack-config-js中添加test-1"><a href="#在webpack-config-js中添加test-1" class="headerlink" title="在webpack.config.js中添加test"></a>在<code>webpack.config.js</code>中添加<code>test</code></h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-punctuation">&#123;</span><br><span class="hljs-symbol">  test:</span> /\.css$/,<br><span class="hljs-symbol">  use:</span> ExtractTextPlugin.extract(<span class="hljs-punctuation">&#123;</span><br><span class="hljs-symbol">    fallback:</span> <span class="hljs-string">&quot;style-loader&quot;</span>,<br><span class="hljs-symbol">    use:</span> <span class="hljs-string">&quot;css-loader&quot;</span><br>  <span class="hljs-punctuation">&#125;</span>)<br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="在webpack-config-js中添加插件-plugins"><a href="#在webpack-config-js中添加插件-plugins" class="headerlink" title="在webpack.config.js中添加插件(plugins)"></a>在<code>webpack.config.js</code>中添加插件(plugins)</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(),<br><span class="hljs-comment">//把publicPath删除，因为打包时自动生成路径</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="给HtmlWebpackPlugin增加一个模版文件"><a href="#给HtmlWebpackPlugin增加一个模版文件" class="headerlink" title="给HtmlWebpackPlugin增加一个模版文件"></a>给<code>HtmlWebpackPlugin</code>增加一个模版文件</h4><h5 id="创建public-index-html"><a href="#创建public-index-html" class="headerlink" title="创建public -&gt; index.html"></a>创建<code>public</code> -&gt; <code>index.html</code></h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Webpack<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;root&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="在webpack-config-js中修改插件-plugins-HtmlWebpackPlugin"><a href="#在webpack-config-js中修改插件-plugins-HtmlWebpackPlugin" class="headerlink" title="在webpack.config.js中修改插件(plugins)HtmlWebpackPlugin"></a>在<code>webpack.config.js</code>中修改插件(plugins)<code>HtmlWebpackPlugin</code></h5><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(&#123;<br>  template: <span class="hljs-string">&#x27;public/index.html&#x27;</span>,<br>  <span class="hljs-comment">//模版文件地址</span><br>  filename: <span class="hljs-string">&#x27;index.html&#x27;</span>,<br>  <span class="hljs-comment">//生产的html文件名（默认为index.html）</span><br>  <span class="hljs-comment">//可以添加其他的配置选项，例如：title，minify，filename</span><br>&#125;),<br></code></pre></td></tr></table></figure>
+
+<p>所有的配置选项的github地址：<a target="_blank" rel="noopener" href="https://github.com/jantimon/html-webpack-plugin#configuration">点击进入</a></p>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><h4 id="修改webpack-config-js名称为webpack-prod-config-js"><a href="#修改webpack-config-js名称为webpack-prod-config-js" class="headerlink" title="修改webpack.config.js名称为webpack.prod.config.js"></a>修改<code>webpack.config.js</code>名称为<code>webpack.prod.config.js</code></h4><h4 id="修改package-json的npm-run命令"><a href="#修改package-json的npm-run命令" class="headerlink" title="修改package.json的npm run命令"></a>修改<code>package.json</code>的<code>npm run</code>命令</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;build&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;./node_modules/.bin/webpack --config webpack.prod.config.js&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-comment">//添加配置文件</span><br>    <span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;./node_modules/.bin/webpack-dev-server --config webpack.dev.config.js&quot;</span><br>    <span class="hljs-comment">//添加启动的服务器</span><br>  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="完成开发环境的配置"><a href="#完成开发环境的配置" class="headerlink" title="完成开发环境的配置"></a>完成开发环境的配置</h3><h4 id="装包（实时加载）"><a href="#装包（实时加载）" class="headerlink" title="装包（实时加载）"></a>装包（实时加载）</h4><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs q">npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> webpack-<span class="hljs-built_in">dev</span>-server<br></code></pre></td></tr></table></figure>
+
+<h4 id="创建webpack-dev-config-js配置文件"><a href="#创建webpack-dev-config-js配置文件" class="headerlink" title="创建webpack.dev.config.js配置文件"></a>创建<code>webpack.dev.config.js</code>配置文件</h4><p>黏贴下面代码（webpack.prod.config.js中代码修改）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);<br><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack&#x27;</span>)<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">HtmlWebpackPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;html-webpack-plugin&#x27;</span>)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>,<br>  <span class="hljs-attr">output</span>: &#123;<br>    <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&quot;dist&quot;</span>),<br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&quot;bundle.js&quot;</span>,<br>    <span class="hljs-comment">// publicPath:&quot;dist/&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">devtool</span>:<span class="hljs-string">&quot;source-map&quot;</span>,<br>  <span class="hljs-attr">module</span>: &#123;<br>    <span class="hljs-attr">rules</span>: [<br>      &#123; <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.js[x]?$/</span>, <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>, <span class="hljs-attr">use</span>: <span class="hljs-string">&quot;babel-loader&quot;</span> &#125;,<br>      &#123; <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/</span>, <span class="hljs-attr">use</span>: [<span class="hljs-string">&#x27;style-loader&#x27;</span>,<span class="hljs-string">&quot;css-loader&quot;</span>,<span class="hljs-string">&#x27;postcss-loader&#x27;</span>] &#125;,<br>      &#123; <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.(jpe?g|png)$/</span>, <span class="hljs-attr">use</span>: <span class="hljs-string">&#x27;file-loader&#x27;</span> &#125;,<br>    ]<br>  &#125;,<br>  <span class="hljs-attr">plugins</span>: [<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>(&#123;<br>      <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;public/index.html&#x27;</span><br>    &#125;),<br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="添加配置webpack-dev-config-js的模块-module-下"><a href="#添加配置webpack-dev-config-js的模块-module-下" class="headerlink" title="添加配置webpack.dev.config.js的模块(module)下"></a>添加配置<code>webpack.dev.config.js</code>的模块(module)下</h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">devServer:</span> <span class="hljs-punctuation">&#123;</span><br><span class="hljs-symbol">    port:</span> <span class="hljs-number">3000</span>,<br>    <span class="hljs-comment">//端口修改为3000</span><br><span class="hljs-symbol">    hot:</span>true<br>    <span class="hljs-comment">//热加载</span><br>  <span class="hljs-punctuation">&#125;</span>,<br></code></pre></td></tr></table></figure>
+
+<h5 id="热加载还需要配置webpack-dev-config-js的插件-Plugins"><a href="#热加载还需要配置webpack-dev-config-js的插件-Plugins" class="headerlink" title="热加载还需要配置webpack.dev.config.js的插件(Plugins)"></a>热加载还需要配置<code>webpack.dev.config.js</code>的插件(Plugins)</h5><p>添加热加载插件</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">new</span> webpack.<span class="hljs-title class_">HotModuleReplacementPlugin</span>()<br></code></pre></td></tr></table></figure>
+
+<h3 id="自动打开"><a href="#自动打开" class="headerlink" title="自动打开"></a>自动打开</h3><h4 id="装包-6"><a href="#装包-6" class="headerlink" title="装包"></a>装包</h4><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">npm i <span class="hljs-keyword">open</span>-browser-webpack-<span class="hljs-keyword">plugin</span> -<span class="hljs-keyword">D</span><br></code></pre></td></tr></table></figure>
+
+<p>在<code>webpack.dev.config.js</code>中引用<code>open-browser-webpack-plugin</code>插件</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">const</span> <span class="hljs-title class_">OpenBrowserWebpackPlugin</span> = <span class="hljs-title function_">require</span>(<span class="hljs-string">&#x27;open-browser-webpack-plugin&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h4 id="添加webpack-dev-config-js的插件-Plugins"><a href="#添加webpack-dev-config-js的插件-Plugins" class="headerlink" title="添加webpack.dev.config.js的插件(Plugins)"></a>添加<code>webpack.dev.config.js</code>的插件(Plugins)</h4><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">new</span> <span class="hljs-title class_">OpenBrowserWebpackPlugin</span>(&#123;<br>  <span class="hljs-comment">//自动打开插件</span><br>  url:<span class="hljs-string">&#x27;http://localhost:3000&#x27;</span><br>  <span class="hljs-comment">//自动打开的地址</span><br>&#125;),<br></code></pre></td></tr></table></figure>
+
+<h4 id="检测是否成功"><a href="#检测是否成功" class="headerlink" title="检测是否成功"></a>检测是否成功</h4><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> start<br>//<span class="hljs-built_in">npm</span> run start<br></code></pre></td></tr></table></figure>
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li>Webpack官网：<a target="_blank" rel="noopener" href="https://doc.webpack-china.org/">点击进入</a></li>
+</ul>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/my-note/js/events.js" ></script>
+<script  src="/my-note/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/my-note/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/my-note/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/my-note/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

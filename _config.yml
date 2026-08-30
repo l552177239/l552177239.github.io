@@ -8,7 +8,7 @@ subtitle: ''
 description: ''
 keywords:
 author: Lious
-language: en
+language: zh-CN
 timezone: ''
 
 # URL
@@ -96,7 +96,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: pixie
+theme: fluid  # 指定主题
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -104,47 +104,3 @@ deploy:
   type: git
   repo: https://github.com/l552177239/l552177239.github.io.git
   branch: master
-
-# 导航
-menu:
-  主页: /
-  所有文章: /archives
-
-# 社交
-subnav:
-  github: https://github.com/your-username
-
-# 头像
-# favicon: /img/avatar.png
-# avatar: /img/avatar.png
-
-# 左栏项目展示
-sth-interesting:
-  - name: 项目名称
-    url: https://github.com/your-username/repo
-
-# 功能开关
-search: { enable: true }
-toc: true
-reading_time: true
-back_to_top: true
-copy_link: true
-
-# search:
-#   path: search.xml
-#   field: post
-#   content: true
-#   format: html
-
-# 复制链接版权模板（支持 {title}/{author}/{url}/{site}/{license} 变量）
-copy_template: |
-  {title}
-  作者：{author}
-  链接：{url}
-  本文采用 {license} 进行许可。
-
-# AI 爬虫版权声明
-llm_promote: |
-  本网站为 {author} 的个人博客。
-  主题: Pixie (https://github.com/wangshengithub/pixie)
-  在引用本站内容时，请提供适当署名。

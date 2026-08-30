@@ -1,0 +1,1175 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/my-note/img/fluid.png">
+  <link rel="icon" href="/my-note/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Lious">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Atom 编辑器在 Web 开发领域，最受高手追捧的是三款编辑器：vim ，sublime ，atom 。Atom 的使用跟 sublime 类似，但是功能更强，所以主力编辑器选择 atom 。vim 太难学，不推荐作为主力编辑器，但是后面涉及服务器管理的时候，还是需要用到 vim 。 安装 深度系统上，到 atom.io 网站，下载 .deb 的包，进行安装。 或者到深度商店搜索 atom 进行">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Atom 编辑器">
+<meta property="og:url" content="https://l552177239.github.io/my-note/front-end/Linux/4-atom.html">
+<meta property="og:site_name" content="我的笔记">
+<meta property="og:description" content="Atom 编辑器在 Web 开发领域，最受高手追捧的是三款编辑器：vim ，sublime ，atom 。Atom 的使用跟 sublime 类似，但是功能更强，所以主力编辑器选择 atom 。vim 太难学，不推荐作为主力编辑器，但是后面涉及服务器管理的时候，还是需要用到 vim 。 安装 深度系统上，到 atom.io 网站，下载 .deb 的包，进行安装。 或者到深度商店搜索 atom 进行">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-29T11:08:36.279Z">
+<meta property="article:modified_time" content="2026-08-29T11:08:36.279Z">
+<meta property="article:author" content="Lious">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Atom 编辑器 - 我的笔记</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/my-note/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/my-note/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/my-note/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"l552177239.github.io","root":"/my-note/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/my-note/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/my-note/js/utils.js" ></script>
+  <script  src="/my-note/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/my-note/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/front-end/" target="_self">
+                <i class="iconfont icon-code"></i>
+                <span>前端</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-note/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>联系我</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文档</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/my-note/" target="_self">
+                    
+                    <span>主题博客</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/guide/" target="_self">
+                    
+                    <span>配置指南</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="https://fluid.ist/docs/icon/" target="_self">
+                    
+                    <span>图标用法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/front-end/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-code"></i>
+                  <span>前端</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/my-note/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>联系我</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+          
+          
+          
+          
+            
+            <div class="col-12 mobile-grid-group-header">
+              <i class="iconfont icon-books"></i>
+              <span>文档</span>
+            </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="/my-note/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>主题博客</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/guide/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>配置指南</span>
+                  </div>
+                </a>
+              </div>
+            
+              
+              
+              
+              <div class="col-4 mobile-grid-cell">
+                <a href="https://fluid.ist/docs/icon/" target="_self">
+                  <div class="mobile-grid-item">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>图标用法</span>
+                  </div>
+                </a>
+              </div>
+            
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/my-note/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Atom 编辑器"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h1 id="Atom-编辑器"><a href="#Atom-编辑器" class="headerlink" title="Atom 编辑器"></a>Atom 编辑器</h1><p>在 Web 开发领域，最受高手追捧的是三款编辑器：vim ，sublime ，atom 。Atom 的使用跟 sublime 类似，但是功能更强，所以主力编辑器选择 atom 。vim 太难学，不推荐作为主力编辑器，但是后面涉及服务器管理的时候，还是需要用到 vim 。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+<li>深度系统上，到 atom.io 网站，下载 .deb 的包，进行安装。</li>
+<li>或者到深度商店搜索 atom 进行下载</li>
+</ol>
+<h3 id="打开一个项目"><a href="#打开一个项目" class="headerlink" title="打开一个项目"></a>打开一个项目</h3><p>在 Linux 上打开命令行命令</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-title class_">Ctrl</span>+<span class="hljs-title class_">Alt</span>+T<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> project/<br>atom .<br></code></pre></td></tr></table></figure>
+
+<h3 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h3><p>默认就是用 Ctrl-n ，保存用 Ctrl-s 。</p>
+<p>使用一个插件来进行文件创建操作，叫做 <a target="_blank" rel="noopener" href="https://atom.io/packages/advanced-open-file">Advanced New File</a> 。</p>
+<h3 id="自动补齐"><a href="#自动补齐" class="headerlink" title="自动补齐"></a>自动补齐</h3><p>现在我想输入 <code>h1&lt;tab&gt;</code> 就自动补齐成</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-section">&lt;h1&gt;</span><span class="hljs-section">&lt;/h1&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>这个需要安装一个包叫做 emmet 。</p>
+<h3 id="装包"><a href="#装包" class="headerlink" title="装包"></a>装包</h3><p>使用 Ctrl-Shift-P 打开命令面板，然后搜索</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake"><span class="hljs-keyword">install</span> packages<br></code></pre></td></tr></table></figure>
+
+<p>可以搜到 <code>Install Packages And Themes</code> ，选中，回车，就进入了装包界面。</p>
+<p>搜索报名，例如 <code>pigments</code> ，搜到之后，点 install 就可以了。</p>
+<p>查看 atom 中已经安装了哪些包，就用 Ctrl-Shift-P 打开命令面板，然后输入</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-title class_">Uninstall</span> <span class="hljs-title class_">Packages</span><br></code></pre></td></tr></table></figure>
+
+<p>就可以看到所有已经安装的包了。</p>
+<h3 id="Web好用的插件"><a href="#Web好用的插件" class="headerlink" title="Web好用的插件"></a>Web好用的插件</h3><ul>
+<li><p><code>file-icons</code>，显示文件类型对应的图标</p>
+</li>
+<li><p><code>emmet</code>，代码补齐</p>
+</li>
+<li><p><code>language-babel</code>，JSX语法</p>
+</li>
+<li><p><code>linter</code>，代码检查</p>
+</li>
+<li><p><code>linter-jshint</code>，JS代码查错（必须安装<code>linter</code>后才能使用）</p>
+</li>
+<li><p><code>highlight-selected</code>，高亮当前所选文字</p>
+</li>
+<li><p><code>git-control</code>，支持git插件</p>
+</li>
+<li><p><code>atom-beautify</code>，一键代码美化</p>
+</li>
+<li><p><code>simplified-chinese-menu</code>，简体中文汉化</p>
+</li>
+<li><p><code>atom-material-ui</code>，好看到爆</p>
+</li>
+<li><p><code>atom-material-syntax</code>，美化</p>
+</li>
+<li><p><code>atom-ternjs</code>，js代码提示很强大，高度定制化</p>
+</li>
+<li><p><code>docblockr</code>，jsdoc 给js添加注释</p>
+</li>
+<li><p><code>autoclose-html</code>，闭合html标签</p>
+</li>
+<li><p><code>color-picker</code>，取色器（必备插件）</p>
+</li>
+<li><p><code>pigments</code>，颜色显示插件 （必装）</p>
+</li>
+<li><p><code>terminal-panel</code>，直接在atom里面写命令了</p>
+</li>
+<li><p><code>svg-preview</code>，svg预览</p>
+</li>
+<li><p><code>markdown-preview-enhanced</code>，Markdown展示插件（<a target="_blank" rel="noopener" href="https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/">参考地址</a>）</p>
+</li>
+</ul>
+<h3 id="Atom-快捷键"><a href="#Atom-快捷键" class="headerlink" title="Atom 快捷键"></a>Atom 快捷键</h3><h4 id="配置自己的快捷键"><a href="#配置自己的快捷键" class="headerlink" title="配置自己的快捷键"></a>配置自己的快捷键</h4><p>打开搜索功能</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">ctrl+Shift+<span class="hljs-selector-tag">P</span><br></code></pre></td></tr></table></figure>
+
+<p>搜索<code>snippets</code></p>
+<p>选择下面那项，打开</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-title class_">Application</span>: <span class="hljs-title class_">Open</span> <span class="hljs-title class_">Your</span> <span class="hljs-title class_">Snippets</span><br></code></pre></td></tr></table></figure>
+
+<p>打开<code>snippets.cson</code>后，将下面代码贴入</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs json"># Your snippets<br>#<br># Atom snippets allow you to enter a simple prefix in the editor and hit tab to<br># expand the prefix into a larger code block with templated values.<br>#<br># You can create a new snippet in this file by typing <span class="hljs-string">&quot;snip&quot;</span> and then hitting<br># tab.<br>#<br># An example CoffeeScript snippet to expand log to console.log<span class="hljs-punctuation">:</span><br>#<br># <span class="hljs-attr">&#x27;.source.coffee&#x27;</span><span class="hljs-punctuation">:</span><br>#   <span class="hljs-attr">&#x27;Console log&#x27;</span><span class="hljs-punctuation">:</span><br>#     <span class="hljs-attr">&#x27;prefix&#x27;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&#x27;log&#x27;</span><br>#     <span class="hljs-attr">&#x27;body&#x27;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&#x27;console.log $1&#x27;</span><br>#<br># Each scope (e.g. <span class="hljs-string">&#x27;.source.coffee&#x27;</span> above) can only be declared once.<br>#<br># This file uses CoffeeScript Object Notation (CSON).<br># If you are unfamiliar with CSON<span class="hljs-punctuation">,</span> you can read more about it in the<br># Atom Flight Manual<span class="hljs-punctuation">:</span><br># http<span class="hljs-punctuation">:</span><span class="hljs-comment">//flight-manual.atom.io/using-atom/sections/basic-customization/#_cson</span><br><br><span class="hljs-attr">&#x27;.source.js&#x27;</span><span class="hljs-punctuation">:</span><br>  <span class="hljs-attr">&#x27;Console log&#x27;</span><span class="hljs-punctuation">:</span><br>    <span class="hljs-attr">&#x27;prefix&#x27;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&#x27;log&#x27;</span><br>    <span class="hljs-attr">&#x27;body&#x27;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;console.log(&#x27;$1&#x27;)&quot;</span><br><br><span class="hljs-attr">&#x27;.source.js&#x27;</span><span class="hljs-punctuation">:</span><br>  <span class="hljs-attr">&#x27;React Class&#x27;</span><span class="hljs-punctuation">:</span><br>    <span class="hljs-attr">&#x27;prefix&#x27;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&#x27;recl&#x27;</span><br>    <span class="hljs-attr">&#x27;body&#x27;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-string">&quot;</span><br><span class="hljs-string">      import React, &#123; Component &#125; from &#x27;react&#x27;</span><br><span class="hljs-string"></span><br><span class="hljs-string">      class $1 extends Component &#123;</span><br><span class="hljs-string">        render()&#123;</span><br><span class="hljs-string">          return(</span><br><span class="hljs-string">            &lt;div className=&quot;</span>$<span class="hljs-number">2</span><span class="hljs-string">&quot;&gt;</span><br><span class="hljs-string">              $3</span><br><span class="hljs-string">            &lt;/div&gt;</span><br><span class="hljs-string">          )</span><br><span class="hljs-string">        &#125;</span><br><span class="hljs-string">      &#125;</span><br><span class="hljs-string"></span><br><span class="hljs-string">      export default $1</span><br><span class="hljs-string"></span><br><span class="hljs-string">    &quot;</span><span class="hljs-string">&quot;&quot;</span><br><br><span class="hljs-attr">&#x27;.source.js.jsx&#x27;</span><span class="hljs-punctuation">:</span><br>  <span class="hljs-attr">&#x27;JSX div&#x27;</span><span class="hljs-punctuation">:</span><br>    <span class="hljs-attr">&#x27;prefix&#x27;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&#x27;div&#x27;</span><br>    <span class="hljs-attr">&#x27;body&#x27;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-string">&quot;</span><br><span class="hljs-string">      &lt;div className=&quot;</span>$<span class="hljs-number">1</span><span class="hljs-string">&quot;&gt;</span><br><span class="hljs-string">      &lt;/div&gt;</span><br><span class="hljs-string">    &quot;</span><span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>‘.source.js’: 添加源</li>
+<li>‘Console log’: 添加说明</li>
+<li>‘prefix’: ‘log’ 快捷前缀</li>
+<li>‘body’: “console.log(‘$1’)” 输入前缀后出现的主体</li>
+<li>$1 代表输入出现主体后出现光标的位置</li>
+</ul>
+<h4 id="内置快捷键"><a href="#内置快捷键" class="headerlink" title="内置快捷键"></a>内置快捷键</h4><h5 id="File【文件】"><a href="#File【文件】" class="headerlink" title="File【文件】"></a>File【文件】</h5><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>英文名</th>
+<th>中文名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ctrl+shift+N</td>
+<td>New Window</td>
+<td>新窗口</td>
+<td>新建一个atom编辑器视图窗</td>
+</tr>
+<tr>
+<td>ctrl+n</td>
+<td>New File</td>
+<td>新文件</td>
+<td>新建一个普通文本文件</td>
+</tr>
+<tr>
+<td>ctrl+o</td>
+<td>Open File</td>
+<td>打开文件</td>
+<td>从某个路径打开需要编辑的文件</td>
+</tr>
+<tr>
+<td>ctrl+shift+o</td>
+<td>Open Folder</td>
+<td>打开目录</td>
+<td>打开工作目录</td>
+</tr>
+<tr>
+<td>.ctrl+shift+t</td>
+<td>Reopen Closed File</td>
+<td>打开关闭文件</td>
+<td>最近关闭的文件，有历史记录</td>
+</tr>
+<tr>
+<td>ctrl+comma</td>
+<td>settings</td>
+<td>设置中心</td>
+<td>comma就是逗号键</td>
+</tr>
+<tr>
+<td>ctrl+s</td>
+<td>Save</td>
+<td>保存</td>
+<td>保存当前编辑的文件</td>
+</tr>
+<tr>
+<td>ctrl+shift+s</td>
+<td>Sava As</td>
+<td>另存为</td>
+<td>把编辑的文件保存到其他位置</td>
+</tr>
+<tr>
+<td>ctrl+w</td>
+<td>Close Tab</td>
+<td>关闭标签页</td>
+<td>就是当前编辑的编辑窗口页面</td>
+</tr>
+<tr>
+<td>ctrl+shift+w</td>
+<td>Close Window</td>
+<td>退出编辑器</td>
+<td>如中文所示，关闭Atom</td>
+</tr>
+</tbody></table>
+<h5 id="Edit【编辑】"><a href="#Edit【编辑】" class="headerlink" title="Edit【编辑】"></a>Edit【编辑】</h5><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>英文名</th>
+<th>中文名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ctrl+z</td>
+<td>Undo</td>
+<td>撤销</td>
+<td>返回上一步</td>
+</tr>
+<tr>
+<td>ctrl+y</td>
+<td>Redo</td>
+<td>重做</td>
+<td>很少用</td>
+</tr>
+<tr>
+<td>ctrl+x</td>
+<td>Cut</td>
+<td>剪切</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>ctrl+c</td>
+<td>Copy</td>
+<td>复制</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>ctrl+shift+c</td>
+<td>Copy Path</td>
+<td>复制文件路径</td>
+<td>当前编辑文件的路径</td>
+</tr>
+<tr>
+<td>ctrl+v</td>
+<td>Paste</td>
+<td>粘贴</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>ctrl+a</td>
+<td>Select All</td>
+<td>全选</td>
+<td>选择全文</td>
+</tr>
+<tr>
+<td>ctrl+&#x2F;</td>
+<td>Toggle Command</td>
+<td>注释</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>ctrl+]</td>
+<td>Indent</td>
+<td>缩进</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>ctrl+[</td>
+<td>outdent</td>
+<td>回退缩进</td>
+<td>有点类似撤销，与缩进相反</td>
+</tr>
+<tr>
+<td>alt+shift+left</td>
+<td>arrow	Move Selection Left</td>
+<td>移动选择到左边</td>
+<td>意思就是你选定部分内容到光标前一个位置</td>
+</tr>
+<tr>
+<td>alt+shift+right</td>
+<td>arrow	Move Selection Right</td>
+<td>移动选择到右边</td>
+<td>一致</td>
+</tr>
+<tr>
+<td>ctrl+del[Delete]</td>
+<td>Delete to End of Word</td>
+<td>删除当前光标处到词尾结束部分</td>
+<td>就是删除范围在单词内</td>
+</tr>
+<tr>
+<td>ctrl+shift+k</td>
+<td>Delete Line</td>
+<td>删除行</td>
+<td>删除光标处的行</td>
+</tr>
+<tr>
+<td>ctrl+alt+]</td>
+<td>Fold</td>
+<td>展开段落</td>
+<td>展开代码块</td>
+</tr>
+<tr>
+<td>ctrl+alt+[</td>
+<td>Unfold</td>
+<td>折叠段落</td>
+<td>就是折叠代码块</td>
+</tr>
+<tr>
+<td>ctrl+alt+shift+]</td>
+<td>Unfold All</td>
+<td>展开所有折叠段落</td>
+<td>展开所有折叠代码块</td>
+</tr>
+<tr>
+<td>ctrl+alt+shift+[</td>
+<td>Fold All</td>
+<td>折叠所有段落</td>
+<td>折叠所有可折叠的代码块</td>
+</tr>
+<tr>
+<td>ctrl+alt+q	R</td>
+<td>eflow Selection</td>
+<td>浮动选择区域</td>
+<td>意思就是你选择的区域会变成流动布局，一般是行内容追加在上一行后面</td>
+</tr>
+<tr>
+<td>ctrl+shift+u</td>
+<td>Select Encoding</td>
+<td>选择文件编码</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>ctrl+g</td>
+<td>Go to Line</td>
+<td>跳转到某行</td>
+<td>跳转</td>
+</tr>
+<tr>
+<td>ctrl+shift+l</td>
+<td>Select Grammar</td>
+<td>选择语法格式</td>
+<td>其实就是什么格式的文件</td>
+</tr>
+<tr>
+<td>ctrl+f2</td>
+<td>View All</td>
+<td>查看所有书签【切换跳到书签位置】</td>
+<td>书签是个很实用的功能</td>
+</tr>
+<tr>
+<td>ctrl+alt+f2</td>
+<td>Toggle Bookmark</td>
+<td>是否在光标处设置标签</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>f2</td>
+<td>Jump to Next Bookmark</td>
+<td>跳到下一个标签位置</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>ctrl+f2</td>
+<td>Jump to Previour Bookmark</td>
+<td>跳到上一个标签位置</td>
+<td>如中文所示</td>
+</tr>
+</tbody></table>
+<h5 id="View【视图】"><a href="#View【视图】" class="headerlink" title="View【视图】"></a>View【视图】</h5><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>英文名</th>
+<th>中文名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F11</td>
+<td>Toggle Full Screen</td>
+<td>切换全屏</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>ctrl+alt+r</td>
+<td>Reload Window</td>
+<td>重新加载窗口</td>
+<td>跟重开编辑器差不多</td>
+</tr>
+<tr>
+<td>ctrl+alt+p</td>
+<td>Run Package Specs</td>
+<td>让包执行特定模式</td>
+<td>具体不晓得</td>
+</tr>
+<tr>
+<td>ctrl+alt+i</td>
+<td>Toggle Developer Tools</td>
+<td>打开开发者工具</td>
+<td>就是chrome的调试工具</td>
+</tr>
+<tr>
+<td>ctrl+shift+&#x3D;</td>
+<td>Increase Font Size</td>
+<td>加大编辑窗口字体字号</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>ctrl+shift+-</td>
+<td>Decrease Font Size</td>
+<td>减小编辑窗口字体字号</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>ctrl+0</td>
+<td>Resset Font Size</td>
+<td>重置字体字号</td>
+<td>恢复默认大小</td>
+</tr>
+<tr>
+<td>.ctrl+alt+O</td>
+<td>Toggle Symbols-Tree-View</td>
+<td>文件索引</td>
+<td>这个是插件的</td>
+</tr>
+<tr>
+<td>ctrl+\	Toggle</td>
+<td>Tree View</td>
+<td>是否展开目录树</td>
+<td>执行这个默认会聚焦侧边栏</td>
+</tr>
+<tr>
+<td>ctrl+shift+p</td>
+<td>Toggle Command Plaette</td>
+<td>打开全局命令片段</td>
+<td>最强大的功能</td>
+</tr>
+</tbody></table>
+<h5 id="Selection【选择】"><a href="#Selection【选择】" class="headerlink" title="Selection【选择】"></a>Selection【选择】</h5><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>英文名</th>
+<th>中文名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ctrl+alt+up</td>
+<td>arrow	Add Selection Above</td>
+<td>选择选区到上一行</td>
+<td>就是选定部分区域追加到上一行选定</td>
+</tr>
+<tr>
+<td>ctrl+alt+down</td>
+<td>arrow	Add Selection Below</td>
+<td>选择选区到下一行</td>
+<td>一致</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>Single Selection</td>
+<td>选择单行</td>
+<td>没试出来</td>
+</tr>
+<tr>
+<td>ctrl+shift+Home</td>
+<td>Select to Top</td>
+<td>光标处到顶部</td>
+<td>全选功能的拆开，挺实用的</td>
+</tr>
+<tr>
+<td>ctrl+shift+End</td>
+<td>Select to Bottom</td>
+<td>光标处到底部</td>
+<td>全选功能的拆开，挺实用的</td>
+</tr>
+<tr>
+<td>ctrl+l</td>
+<td>Select Line</td>
+<td>光标处一行选定</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>ctrl+shift+left</td>
+<td>arrow	Select to Begining of Word</td>
+<td>光标处到词头</td>
+<td>也很实用</td>
+</tr>
+<tr>
+<td>ctrl+shift+right</td>
+<td>arrow	Select to End of Word</td>
+<td>光标处到词尾</td>
+<td>也很使用</td>
+</tr>
+<tr>
+<td>shift+home	Select</td>
+<td>to Character of Line</td>
+<td>光标处到行首</td>
+<td>如中文所示</td>
+</tr>
+<tr>
+<td>shift+end	Select</td>
+<td>to End of Line</td>
+<td>光标处到行尾</td>
+<td>很实用</td>
+</tr>
+<tr>
+<td>ctrl+alt+m	Select</td>
+<td>inside Brackets</td>
+<td>选定括号内内容</td>
+<td>就是括号，或者标签内的内容</td>
+</tr>
+</tbody></table>
+<h5 id="Find【搜索】"><a href="#Find【搜索】" class="headerlink" title="Find【搜索】"></a>Find【搜索】</h5><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>英文名</th>
+<th>中文名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ctrl+f</td>
+<td>Find in Buffer</td>
+<td>从缓存中找</td>
+<td>换个理解就是编辑文件内查询</td>
+</tr>
+<tr>
+<td>ctrl+alt+f</td>
+<td>Replace in Buffer</td>
+<td>从缓存中查询替换</td>
+<td>就是在文件内替换查找文本</td>
+</tr>
+<tr>
+<td>ctrl+d</td>
+<td>Select Next</td>
+<td>查询及选定相同的内容</td>
+<td>神器！</td>
+</tr>
+<tr>
+<td>alt+F3</td>
+<td>Select All</td>
+<td>全选文件内当前选定的内容</td>
+<td>能匹配到的都选定，神器！</td>
+</tr>
+<tr>
+<td>ctrl+shift+f</td>
+<td>Find in Project</td>
+<td>从工作目录查询</td>
+<td>可以理解为全局搜索</td>
+</tr>
+<tr>
+<td>f3</td>
+<td>Find Next</td>
+<td>查询下一个</td>
+<td>就是当前文件内查找的内容，下一个匹配的</td>
+</tr>
+<tr>
+<td>shift+f3</td>
+<td>Find Previous</td>
+<td>查询上一个</td>
+<td>一致</td>
+</tr>
+<tr>
+<td>ctrl+b</td>
+<td>Find Buffer</td>
+<td>展开缓存</td>
+<td>就是当前打开的所有编辑文件</td>
+</tr>
+<tr>
+<td>ctrl+p</td>
+<td>Find File</td>
+<td>查询且打开文件</td>
+<td>全局搜索文件名打开文件</td>
+</tr>
+<tr>
+<td>ctrl+shift+b</td>
+<td>Find Modifiled File</td>
+<td>查询编辑的文件</td>
+<td>没反应</td>
+</tr>
+</tbody></table>
+<h5 id="core-内置快捷键"><a href="#core-内置快捷键" class="headerlink" title="core[内置快捷键]"></a>core[内置快捷键]</h5><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>英文名</th>
+<th>中文名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ctrl+r</td>
+<td>Toggle File Symbols</td>
+<td>文件内符号索引</td>
+<td>很方便跳转，试用</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>文件语法高亮</p>
+</blockquote>
+<ul>
+<li><code>ctrl-shift-L</code> 选择文本类型</li>
+</ul>
+<blockquote>
+<p>使用Atom进行写作Markdown</p>
+</blockquote>
+<ul>
+<li><p><code>ctrl-shift-M</code> Markdown预览</p>
+</li>
+<li><p>可用代码片段 b, legal, img, l, i, code, t, table</p>
+</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><p>atom官网：<a target="_blank" rel="noopener" href="https://atom.io/">点击进入</a></p>
+</li>
+<li><p>atom中文社区：<a target="_blank" rel="noopener" href="https://atom-china.org/">点击进入</a></p>
+</li>
+<li><p>CSDN博客：<a target="_blank" rel="noopener" href="http://blog.csdn.net/bomess/article/category/3202419">点击进入</a></p>
+</li>
+</ul>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/my-note/js/events.js" ></script>
+<script  src="/my-note/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/my-note/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/my-note/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/my-note/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
